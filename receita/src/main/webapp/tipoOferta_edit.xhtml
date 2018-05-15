@@ -1,0 +1,48 @@
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui" xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets" template="/template/main.xhtml">
+
+	<ui:define name="body">
+		<h:form prependId="false">
+			<p:toolbar>
+				<p:toolbarGroup align="left">
+					<p:commandButton value="#{messages['button.save']}" action="#{tipoOfertaEditMB.insert}"
+						rendered="#{!tipoOfertaEditMB.updateMode}" ajax="false" />
+					<p:commandButton value="#{messages['button.save']}" action="#{tipoOfertaEditMB.update}"
+						rendered="#{tipoOfertaEditMB.updateMode}" ajax="false" />
+					<p:commandButton value="#{messages['button.delete']}" onclick="confirmation.show()"
+						rendered="#{tipoOfertaEditMB.updateMode}" type="button" immediate="true" ajax="false" />
+					<p:confirmDialog message="#{messages['label.confirm.delete']}" showEffect="bounce" hideEffect="explode"
+						header="#{messages['label.dialog.delete']}" severity="alert" widgetVar="confirmation">
+						<h:commandButton value="#{messages['button.dialog.yes']}" action="#{tipoOfertaEditMB.delete}" immediate="true"
+							ajax="false" />
+						<h:commandButton value="#{messages['button.dialog.no']}" onclick="confirmation.hide()" type="button" />
+					</p:confirmDialog>
+				</p:toolbarGroup>
+			</p:toolbar>
+
+			<br />
+
+			<p:fieldset legend="#{messages['tipoOferta.label']}" toggleable="true" toggleSpeed="500">
+				<h:panelGrid id="fieldstipoOferta" columns="3">
+				
+					<h:outputLabel value="#{messages['tipoOferta.label.codigo']}: " for="codigo" styleClass="text-input" />
+										
+					<h:outputText id="codigo" value="#{tipoOfertaEditMB.bean.codigo}" />
+					
+					<p:message for="codigo" />
+						
+					<h:outputLabel value="#{messages['tipoOferta.label.descricao']}: " for="descricao" styleClass="text-input" />
+					
+					<h:inputText id="descricao" value="#{tipoOfertaEditMB.bean.descricao}"
+						title="#{messages['tipoOferta.alt.descricao']}" />
+					
+					<p:message for="descricao" />
+						
+				</h:panelGrid>
+			</p:fieldset>
+			
+		</h:form>
+	</ui:define>
+</ui:composition>

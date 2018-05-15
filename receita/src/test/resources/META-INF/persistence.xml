@@ -9,6 +9,8 @@
 
 		<class>br.org.ibmi.receita.domain.Bookmark</class>
 
+			<class>br.org.ibmi.receita.domain.TipoOferta</class>
+		
 		<properties>
 			<property name="javax.persistence.jdbc.driver" value="org.hsqldb.jdbcDriver" />
 			<property name="javax.persistence.jdbc.user" value="sa" />
