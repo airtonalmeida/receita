@@ -1,0 +1,11 @@
+Manifest-Version: 1.0
+Implementation-Title: 
+Implementation-Version: 0.0.1-SNAPSHOT
+Built-By: Sd PM Airton
+Implementation-Vendor-Id: br.org.ibmi
+Build-Jdk: 1.8.0_171
+Implementation-URL: 
+Created-By: Maven Integration for Eclipse
+Implementation-Vendor: SERPRO - Serviￃﾧo Federal de Processamento de D
+ ados
+
