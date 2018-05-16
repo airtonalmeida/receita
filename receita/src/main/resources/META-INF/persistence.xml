@@ -8,7 +8,9 @@
 	<persistence-unit name="bookmark-ds" transaction-type="RESOURCE_LOCAL">
 		<non-jta-data-source>java:jboss/datasources/ExampleDS</non-jta-data-source>
 
-		<properties>
+	
+		<class>br.org.ibmi.receita.domain.RecursoDiverso</class>
+<properties>
 			<property name="hibernate.show_sql" value="true" />
 			<property name="hibernate.format_sql" value="false" />
 			<property name="hibernate.hbm2ddl.auto" value="create-drop" />
@@ -101,6 +103,8 @@
 	
 	<persistence-unit name="receita-ibmi" transaction-type="RESOURCE_LOCAL">
 
+		<class>br.org.ibmi.receita.domain.Receita</class>
+		<class>br.org.ibmi.receita.domain.Oferta</class>
 		<class>br.org.ibmi.receita.domain.TipoOferta</class>
 		
 		<properties>

@@ -11,6 +11,10 @@
 
 			<class>br.org.ibmi.receita.domain.TipoOferta</class>
 		
+			<class>br.org.ibmi.receita.domain.RecursoDiverso</class>
+		
+			<class>br.org.ibmi.receita.domain.Oferta</class>
+		
 		<properties>
 			<property name="javax.persistence.jdbc.driver" value="org.hsqldb.jdbcDriver" />
 			<property name="javax.persistence.jdbc.user" value="sa" />

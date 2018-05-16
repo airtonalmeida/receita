@@ -2,12 +2,17 @@ package br.org.ibmi.receita.domain;
 
 import java.io.Serializable;
 
+import javax.money.CurrencyUnit;
+import javax.money.Monetary;
+import javax.money.MonetaryAmount;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+
+import org.javamoney.moneta.Money;
 
 @Entity
 @Table(name="tipo_oferta")
@@ -24,7 +29,7 @@ public class TipoOferta implements Serializable{
 	private Long codigo;
 	
 	@Column
-	private String descricao;
+	private String descricao;	
 
 	public Long getCodigo() {
 		return codigo;
