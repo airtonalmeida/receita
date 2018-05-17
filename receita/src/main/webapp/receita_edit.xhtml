@@ -25,13 +25,8 @@
 			<br />
 
 			<p:fieldset legend="#{messages['receita.label']}" toggleable="true" toggleSpeed="500">
-				<h:panelGrid id="fieldsreceita" columns="3">
-				
-					<h:outputLabel value="#{messages['receita.label.codigo']}: " for="codigo" styleClass="text-input" />
-										
-					<h:outputText id="codigo" value="#{receitaEditMB.bean.codigo}" />
+				<h:panelGrid id="fieldsreceita" columns="3">			
 					
-					<p:message for="codigo" />
 						
 					<h:outputLabel value="#{messages['receita.label.valorTotalReceita']}: " for="valorTotalReceita" styleClass="text-input" />
 					
@@ -102,7 +97,7 @@
 			        <p:column>
   			           <h:outputLabel value="#{messages['dizimo.label.valor']}: " for="valor" styleClass="text-input" />
 						    
-			           <h:inputText id="valor" value="#{dizimo.valor}"
+			           <h:inputText id="valor" value="#{dizimo.valorDizimo}"
 				          title="#{messages['dizimo.alt.valor']}" />
 						                   
 					   <p:message for="valor" />

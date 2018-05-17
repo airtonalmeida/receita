@@ -26,12 +26,8 @@
 				<f:facet name="header">#{messages['receita.list.table.title']}</f:facet>
 				<p:column style="width:2%;">
 					<h:selectBooleanCheckbox value="#{receitaListMB.selection[bean.codigo]}"></h:selectBooleanCheckbox>
-				</p:column>
+				</p:column>			
 				
-				<p:column style="width:5%;" sortBy="#{bean.codigo}">
-					<f:facet name="header">#{messages['receita.label.codigo']}</f:facet>
-					<h:outputText value="#{bean.codigo}" />
-				</p:column>
 						
 				<p:column sortBy="#{bean.valorTotalReceita}">
 					<f:facet name="header">#{messages['receita.label.valorTotalReceita']}</f:facet>
@@ -71,23 +67,8 @@
 						<h:outputText value="#{bean.data}" />
 						<f:param name="id" value="#{bean.codigo}" />
 					</h:commandLink>
-				</p:column>
-					
-				<p:column sortBy="#{bean.diaSemana}">
-					<f:facet name="header">#{messages['receita.label.diaSemana']}</f:facet>
-					<h:commandLink action="#{receitaListMB.getNextView}" actionListener="#{receitaListMB.clear}">
-						<h:outputText value="#{bean.diaSemana}" />
-						<f:param name="id" value="#{bean.codigo}" />
-					</h:commandLink>
-				</p:column>
-					
-				<p:column sortBy="#{bean.numeroSemanaMes}">
-					<f:facet name="header">#{messages['receita.label.numeroSemanaMes']}</f:facet>
-					<h:commandLink action="#{receitaListMB.getNextView}" actionListener="#{receitaListMB.clear}">
-						<h:outputText value="#{bean.numeroSemanaMes}" />
-						<f:param name="id" value="#{bean.codigo}" />
-					</h:commandLink>
-				</p:column>
+				</p:column>					
+				
 					
 			</p:dataTable>
 		</h:form>
