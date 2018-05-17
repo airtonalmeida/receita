@@ -61,12 +61,12 @@
     <artifactId>tomcat-jdbc</artifactId>
     <version>7.0.72</version>
 </dependency>
-<!-- https://mvnrepository.com/artifact/org.javamoney/moneta -->
+<!-- https://mvnrepository.com/artifact/org.javamoney/moneta-bp -->
 <dependency>
     <groupId>org.javamoney</groupId>
-    <artifactId>moneta</artifactId>
-    <version>1.2.1</version>
-    <type>pom</type>
+    <artifactId>moneta-bp</artifactId>
+    <version>1.2</version>
 </dependency>
+
 	</dependencies>
 </project>

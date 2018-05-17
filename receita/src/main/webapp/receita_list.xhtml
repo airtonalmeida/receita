@@ -1,0 +1,96 @@
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui" xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets" template="/template/main.xhtml">
+
+	<ui:define name="body">
+		<h:form>
+			<p:toolbar>
+				<p:toolbarGroup align="left">
+					<p:commandButton title="#{messages['button.new']}" icon="ui-icon-document" action="#{receitaListMB.getNextView}"
+						actionListener="#{receitaListMB.clear}" ajax="false" />
+
+					<p:commandButton title="#{messages['button.delete']}" icon="ui-icon-trash" onclick="confirmation.show()"
+						type="button" immediate="true" ajax="false" />
+
+					<p:confirmDialog message="#{messages['label.confirm.delete']}" showEffect="bounce" hideEffect="explode"
+						header="#{messages['label.dialog.alert']}!" severity="alert" widgetVar="confirmation">
+
+						<h:commandButton value="#{messages['button.dialog.yes']}" action="#{receitaListMB.deleteSelection}"
+							actionListener="#{receitaListMB.clear}" />
+						<h:commandButton value="#{messages['button.dialog.no']}" onclick="confirmation.hide()" type="button" />
+					</p:confirmDialog>
+				</p:toolbarGroup>
+			</p:toolbar>
+			<p:dataTable id="list" var="bean" value="#{receitaListMB.resultList}">
+				<f:facet name="header">#{messages['receita.list.table.title']}</f:facet>
+				<p:column style="width:2%;">
+					<h:selectBooleanCheckbox value="#{receitaListMB.selection[bean.codigo]}"></h:selectBooleanCheckbox>
+				</p:column>
+				
+				<p:column style="width:5%;" sortBy="#{bean.codigo}">
+					<f:facet name="header">#{messages['receita.label.codigo']}</f:facet>
+					<h:outputText value="#{bean.codigo}" />
+				</p:column>
+						
+				<p:column sortBy="#{bean.valorTotalReceita}">
+					<f:facet name="header">#{messages['receita.label.valorTotalReceita']}</f:facet>
+					<h:commandLink action="#{receitaListMB.getNextView}" actionListener="#{receitaListMB.clear}">
+						<h:outputText value="#{bean.valorTotalReceita}" />
+						<f:param name="id" value="#{bean.codigo}" />
+					</h:commandLink>
+				</p:column>
+					
+				<p:column sortBy="#{bean.valorTotalDizimo}">
+					<f:facet name="header">#{messages['receita.label.valorTotalDizimo']}</f:facet>
+					<h:commandLink action="#{receitaListMB.getNextView}" actionListener="#{receitaListMB.clear}">
+						<h:outputText value="#{bean.valorTotalDizimo}" />
+						<f:param name="id" value="#{bean.codigo}" />
+					</h:commandLink>
+				</p:column>
+					
+				<p:column sortBy="#{bean.valorTotalOferta}">
+					<f:facet name="header">#{messages['receita.label.valorTotalOferta']}</f:facet>
+					<h:commandLink action="#{receitaListMB.getNextView}" actionListener="#{receitaListMB.clear}">
+						<h:outputText value="#{bean.valorTotalOferta}" />
+						<f:param name="id" value="#{bean.codigo}" />
+					</h:commandLink>
+				</p:column>
+					
+				<p:column sortBy="#{bean.valorTotalRecursoDiverso}">
+					<f:facet name="header">#{messages['receita.label.valorTotalRecursoDiverso']}</f:facet>
+					<h:commandLink action="#{receitaListMB.getNextView}" actionListener="#{receitaListMB.clear}">
+						<h:outputText value="#{bean.valorTotalRecursoDiverso}" />
+						<f:param name="id" value="#{bean.codigo}" />
+					</h:commandLink>
+				</p:column>
+					
+				<p:column sortBy="#{bean.data}">
+					<f:facet name="header">#{messages['receita.label.data']}</f:facet>
+					<h:commandLink action="#{receitaListMB.getNextView}" actionListener="#{receitaListMB.clear}">
+						<h:outputText value="#{bean.data}" />
+						<f:param name="id" value="#{bean.codigo}" />
+					</h:commandLink>
+				</p:column>
+					
+				<p:column sortBy="#{bean.diaSemana}">
+					<f:facet name="header">#{messages['receita.label.diaSemana']}</f:facet>
+					<h:commandLink action="#{receitaListMB.getNextView}" actionListener="#{receitaListMB.clear}">
+						<h:outputText value="#{bean.diaSemana}" />
+						<f:param name="id" value="#{bean.codigo}" />
+					</h:commandLink>
+				</p:column>
+					
+				<p:column sortBy="#{bean.numeroSemanaMes}">
+					<f:facet name="header">#{messages['receita.label.numeroSemanaMes']}</f:facet>
+					<h:commandLink action="#{receitaListMB.getNextView}" actionListener="#{receitaListMB.clear}">
+						<h:outputText value="#{bean.numeroSemanaMes}" />
+						<f:param name="id" value="#{bean.codigo}" />
+					</h:commandLink>
+				</p:column>
+					
+			</p:dataTable>
+		</h:form>
+
+	</ui:define>
+</ui:composition>

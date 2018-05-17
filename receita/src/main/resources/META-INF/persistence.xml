@@ -10,6 +10,7 @@
 
 	
 		<class>br.org.ibmi.receita.domain.RecursoDiverso</class>
+		<class>br.org.ibmi.receita.domain.Dizimo</class>
 <properties>
 			<property name="hibernate.show_sql" value="true" />
 			<property name="hibernate.format_sql" value="false" />
@@ -101,11 +102,14 @@
 	
 	<!-- If you are using Tomcat 6 / Tomcat 7 / JUnit then use this persistence-unit -->
 	
-	<persistence-unit name="receita-ibmi" transaction-type="RESOURCE_LOCAL">
+	<persistence-unit name="bookmark-ds" transaction-type="RESOURCE_LOCAL">
 
 		<class>br.org.ibmi.receita.domain.Receita</class>
 		<class>br.org.ibmi.receita.domain.Oferta</class>
 		<class>br.org.ibmi.receita.domain.TipoOferta</class>
+		<class>br.org.ibmi.receita.domain.Dizimo</class>
+		<class>br.org.ibmi.receita.domain.RecursoDiverso</class>
+		
 		
 		<properties>
 			<property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver" />

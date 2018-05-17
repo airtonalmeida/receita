@@ -1,0 +1,55 @@
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui" xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets" template="/template/main.xhtml">
+
+	<ui:define name="body">
+		<h:form prependId="false">
+			<p:toolbar>
+				<p:toolbarGroup align="left">
+					<p:commandButton value="#{messages['button.save']}" action="#{ofertaEditMB.insert}"
+						rendered="#{!ofertaEditMB.updateMode}" ajax="false" />
+					<p:commandButton value="#{messages['button.save']}" action="#{ofertaEditMB.update}"
+						rendered="#{ofertaEditMB.updateMode}" ajax="false" />
+					<p:commandButton value="#{messages['button.delete']}" onclick="confirmation.show()"
+						rendered="#{ofertaEditMB.updateMode}" type="button" immediate="true" ajax="false" />
+					<p:confirmDialog message="#{messages['label.confirm.delete']}" showEffect="bounce" hideEffect="explode"
+						header="#{messages['label.dialog.delete']}" severity="alert" widgetVar="confirmation">
+						<h:commandButton value="#{messages['button.dialog.yes']}" action="#{ofertaEditMB.delete}" immediate="true"
+							ajax="false" />
+						<h:commandButton value="#{messages['button.dialog.no']}" onclick="confirmation.hide()" type="button" />
+					</p:confirmDialog>
+				</p:toolbarGroup>
+			</p:toolbar>
+
+			<br />
+
+			<p:fieldset legend="#{messages['oferta.label']}" toggleable="true" toggleSpeed="500">
+				<h:panelGrid id="fieldsoferta" columns="3">
+				
+					<h:outputLabel value="#{messages['oferta.label.codigo']}: " for="codigo" styleClass="text-input" />
+										
+					<h:outputText id="codigo" value="#{ofertaEditMB.bean.codigo}" />
+					
+					<p:message for="codigo" />
+						
+					<h:outputLabel value="#{messages['oferta.label.valor']}: " for="valor" styleClass="text-input" />
+					
+					<h:inputText id="valor" value="#{ofertaEditMB.bean.valor}"
+						title="#{messages['oferta.alt.valor']}" />
+					
+					<p:message for="valor" />
+						
+					<h:outputLabel value="#{messages['tipoOferta.label']}: " for="tipoOferta" styleClass="text-input" />
+				    <p:selectOneMenu id="tipoOferta" value="#{ofertaEditMB.bean.tipoOferta}"  effect="fade" converter="ConversorTipoOferta">
+						<f:selectItem itemLabel="Selecione" itemValue="" />
+						<f:selectItems value="#{ofertaEditMB.tipoOfertaList}" var="varTipoOferta" itemLabel="#{varTipoOferta.codigo}"  itemValue="#{varTipoOferta}" />						
+					</p:selectOneMenu>
+					<p:message for="tipoOferta" />								  
+								 
+				</h:panelGrid>
+			</p:fieldset>
+			
+		</h:form>
+	</ui:define>
+</ui:composition>

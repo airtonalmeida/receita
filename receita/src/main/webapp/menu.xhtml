@@ -3,6 +3,16 @@
 
 	<h:form>
 		<p:menubar>
+			<p:submenu label="#{messages['menu.receita']}">
+				<p:menuitem value="#{messages['menu.menuitem.new']}" url="/receita_edit.jsf"></p:menuitem>
+				<p:menuitem value="#{messages['menu.menuitem.list']}" url="/receita_list.jsf"></p:menuitem>
+			</p:submenu>
+
+			<p:submenu label="#{messages['menu.dizimo']}">
+				<p:menuitem value="#{messages['menu.menuitem.new']}" url="/dizimo_edit.jsf"></p:menuitem>
+				<p:menuitem value="#{messages['menu.menuitem.list']}" url="/dizimo_list.jsf"></p:menuitem>
+			</p:submenu>
+
 			<p:submenu label="#{messages['menu.oferta']}">
 				<p:menuitem value="#{messages['menu.menuitem.new']}" url="/oferta_edit.jsf"></p:menuitem>
 				<p:menuitem value="#{messages['menu.menuitem.list']}" url="/oferta_list.jsf"></p:menuitem>

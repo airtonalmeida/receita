@@ -1,0 +1,55 @@
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui" xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets" template="/template/main.xhtml">
+
+	<ui:define name="body">
+		<h:form prependId="false">
+			<p:toolbar>
+				<p:toolbarGroup align="left">
+					<p:commandButton value="#{messages['button.save']}" action="#{recursoDiversoEditMB.insert}"
+						rendered="#{!recursoDiversoEditMB.updateMode}" ajax="false" />
+					<p:commandButton value="#{messages['button.save']}" action="#{recursoDiversoEditMB.update}"
+						rendered="#{recursoDiversoEditMB.updateMode}" ajax="false" />
+					<p:commandButton value="#{messages['button.delete']}" onclick="confirmation.show()"
+						rendered="#{recursoDiversoEditMB.updateMode}" type="button" immediate="true" ajax="false" />
+					<p:confirmDialog message="#{messages['label.confirm.delete']}" showEffect="bounce" hideEffect="explode"
+						header="#{messages['label.dialog.delete']}" severity="alert" widgetVar="confirmation">
+						<h:commandButton value="#{messages['button.dialog.yes']}" action="#{recursoDiversoEditMB.delete}" immediate="true"
+							ajax="false" />
+						<h:commandButton value="#{messages['button.dialog.no']}" onclick="confirmation.hide()" type="button" />
+					</p:confirmDialog>
+				</p:toolbarGroup>
+			</p:toolbar>
+
+			<br />
+
+			<p:fieldset legend="#{messages['recursoDiverso.label']}" toggleable="true" toggleSpeed="500">
+				<h:panelGrid id="fieldsrecursoDiverso" columns="3">
+				
+					<h:outputLabel value="#{messages['recursoDiverso.label.codigo']}: " for="codigo" styleClass="text-input" />
+										
+					<h:outputText id="codigo" value="#{recursoDiversoEditMB.bean.codigo}" />
+					
+					<p:message for="codigo" />
+						
+					<h:outputLabel value="#{messages['recursoDiverso.label.descricao']}: " for="descricao" styleClass="text-input" />
+					
+					<h:inputText id="descricao" value="#{recursoDiversoEditMB.bean.descricao}"
+						title="#{messages['recursoDiverso.alt.descricao']}" />
+					
+					<p:message for="descricao" />
+						
+					<h:outputLabel value="#{messages['recursoDiverso.label.valor']}: " for="valor" styleClass="text-input" />
+					
+					<h:inputText id="valor" value="#{recursoDiversoEditMB.bean.valor}"
+						title="#{messages['recursoDiverso.alt.valor']}" />
+					
+					<p:message for="valor" />
+						
+				</h:panelGrid>
+			</p:fieldset>
+			
+		</h:form>
+	</ui:define>
+</ui:composition>
