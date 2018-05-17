@@ -48,6 +48,17 @@ public class Dizimo implements Serializable{
 		return result;
 	}
 
+	public Dizimo(Long codigo, Money valorDizimo) {
+		super();
+		this.codigo = codigo;
+		this.valorDizimo = valorDizimo;
+	}
+	
+	public Dizimo() {
+		super();
+	
+	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)

@@ -4,87 +4,59 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets" template="/template/main.xhtml">
 
 	<ui:define name="body">
-		<h:form prependId="false">
-			<p:toolbar>
-				<p:toolbarGroup align="left">
-					<p:commandButton value="#{messages['button.save']}" action="#{receitaEditMB.insert}"
-						rendered="#{!receitaEditMB.updateMode}" ajax="false" />
-					<p:commandButton value="#{messages['button.save']}" action="#{receitaEditMB.update}"
-						rendered="#{receitaEditMB.updateMode}" ajax="false" />
-					<p:commandButton value="#{messages['button.delete']}" onclick="confirmation.show()"
-						rendered="#{receitaEditMB.updateMode}" type="button" immediate="true" ajax="false" />
-					<p:confirmDialog message="#{messages['label.confirm.delete']}" showEffect="bounce" hideEffect="explode"
-						header="#{messages['label.dialog.delete']}" severity="alert" widgetVar="confirmation">
-						<h:commandButton value="#{messages['button.dialog.yes']}" action="#{receitaEditMB.delete}" immediate="true"
-							ajax="false" />
-						<h:commandButton value="#{messages['button.dialog.no']}" onclick="confirmation.hide()" type="button" />
-					</p:confirmDialog>
-				</p:toolbarGroup>
-			</p:toolbar>
+		<h:form id="form" prependId="false">	
 
-			<br />
-
-			<p:fieldset legend="#{messages['receita.label']}" toggleable="true" toggleSpeed="500">
-				<h:panelGrid id="fieldsreceita" columns="3">			
-					
-						
-					<h:outputLabel value="#{messages['receita.label.valorTotalReceita']}: " for="valorTotalReceita" styleClass="text-input" />
-					
-					<h:inputText id="valorTotalReceita" value="#{receitaEditMB.bean.valorTotalReceita}"
-						title="#{messages['receita.alt.valorTotalReceita']}" />
-					
-					<p:message for="valorTotalReceita" />
-						
-					<h:outputLabel value="#{messages['receita.label.valorTotalDizimo']}: " for="valorTotalDizimo" styleClass="text-input" />
-					
-					<h:inputText id="valorTotalDizimo" value="#{receitaEditMB.bean.valorTotalDizimo}"
-						title="#{messages['receita.alt.valorTotalDizimo']}" />
-					
-					<p:message for="valorTotalDizimo" />
-						
-					<h:outputLabel value="#{messages['receita.label.valorTotalOferta']}: " for="valorTotalOferta" styleClass="text-input" />
-					
-					<h:inputText id="valorTotalOferta" value="#{receitaEditMB.bean.valorTotalOferta}"
-						title="#{messages['receita.alt.valorTotalOferta']}" />
-					
-					<p:message for="valorTotalOferta" />
-						
-					<h:outputLabel value="#{messages['receita.label.valorTotalRecursoDiverso']}: " for="valorTotalRecursoDiverso" styleClass="text-input" />
-					
-					<h:inputText id="valorTotalRecursoDiverso" value="#{receitaEditMB.bean.valorTotalRecursoDiverso}"
-						title="#{messages['receita.alt.valorTotalRecursoDiverso']}" />
-					
-					<p:message for="valorTotalRecursoDiverso" />
-						
-					<h:outputLabel value="#{messages['receita.label.data']}: " for="data" styleClass="text-input" />
+			<p:fieldset legend="Dados" toggleable="true" toggleSpeed="500">
+				<h:panelGrid id="fieldsdados" columns="3">
+				
+				<p:outputLabel value="#{messages['receita.label.data']}: " for="data" styleClass="text-input" />
 					
 					<p:calendar id="data" value="#{receitaEditMB.bean.data}"
 					   pattern="#{messages['label.date.pattern']}" navigator="true" showButtonPanel="true"
-					   locale="#{locales.currentLocale}" title="#{messages['receita.alt.data']}" />
-							 
+					   locale="#{locales.currentLocale}" title="#{messages['receita.alt.data']}" >
+					   <p:ajax event="dateSelect"
+										update=":form:diaSemana,:form:numeroSemanaMes"
+										listener="#{receitaEditMB.obterDiaNumeroSemana}" />
+								
+						</p:calendar>	 
 					<p:message for="data" />
 						
-					<h:outputLabel value="#{messages['receita.label.diaSemana']}: " for="diaSemana" styleClass="text-input" />
+					<p:outputLabel value="#{messages['receita.label.diaSemana']}: " for="diaSemana" styleClass="text-input" />
 					
-					<h:inputText id="diaSemana" value="#{receitaEditMB.bean.diaSemana}"
+					<p:outputLabel id="diaSemana" value="#{receitaEditMB.bean.diaSemana}" 
 						title="#{messages['receita.alt.diaSemana']}" />
 					
 					<p:message for="diaSemana" />
 						
-					<h:outputLabel value="#{messages['receita.label.numeroSemanaMes']}: " for="numeroSemanaMes" styleClass="text-input" />
+					<p:outputLabel value="#{messages['receita.label.numeroSemanaMes']}: " for="numeroSemanaMes" styleClass="text-input" />
 					
-					<h:inputText id="numeroSemanaMes" value="#{receitaEditMB.bean.numeroSemanaMes}"
+					<p:outputLabel id="numeroSemanaMes" value="#{receitaEditMB.bean.numeroSemanaMes}" 
 						title="#{messages['receita.alt.numeroSemanaMes']}" />
 					
-					<p:message for="numeroSemanaMes" />
+					<p:message for="numeroSemanaMes" />						
+					
 						
 				</h:panelGrid>
 			</p:fieldset>
+						
+			<br />
 			
+			<p:fieldset legend="#{messages['receita.label']}"  toggleSpeed="500">
+				<h:panelGrid id="fieldsreceita" columns="3">
+		         <h:outputLabel value="#{messages['receita.label.valorTotalReceita']}: " for="valorTotalReceita" styleClass="text-input" />
+					
+					<h:inputText id="valorTotalReceita" value="#{receitaEditMB.bean.valorTotalReceita}" disabled="true"
+						title="#{messages['receita.alt.valorTotalReceita']}" />
+					
+					<p:message for="valorTotalReceita" />	
+						
+				</h:panelGrid>
+		</p:fieldset>
+		<br />
 		<p:fieldset legend="#{messages['dizimo.label']}" toggleable="true" toggleSpeed="500">
 			<h:panelGrid id="fieldsdizimo" columns="1"> 
-				<p:commandButton value="#{messages['button.new']}" action="#{receitaEditMB.addDizimo}" update="listDizimo"/>
-				<p:dataTable id="listDizimo" var="dizimo" value="#{receitaEditMB.dizimoList}" rowIndexVar="index">
+				
+				<p:dataTable id="listDizimo" var="dizimo" value="#{receitaEditMB.dizimoList}" rowIndexVar="index" emptyMessage=" ">
 						
 			        <p:column>
   			           <h:outputLabel value="#{messages['dizimo.label.codigo']}: " for="codigo" styleClass="text-input" />
@@ -108,13 +80,27 @@
 					   <p:commandButton value="#{messages['button.delete']}" action="#{receitaEditMB.deleteDizimo}" ajax="false"/>
 				   </p:column>
 				</p:dataTable>
+				
+				<p:toolbar>
+							<f:facet name="right">
+								<p:commandButton value="#{messages['button.new']}" action="#{receitaEditMB.addDizimo}" update="listDizimo">
+								</p:commandButton>
+							</f:facet>
+				</p:toolbar>	
+				<h:outputLabel value="#{messages['receita.label.valorTotalDizimo']}: " for="valorTotalDizimo" styleClass="text-input" />
+					
+					<h:inputText id="valorTotalDizimo" value="#{receitaEditMB.bean.valorTotalDizimo}" disabled="true"
+						title="#{messages['receita.alt.valorTotalDizimo']}" />
+					
+					<p:message for="valorTotalDizimo" />	
+				
 			</h:panelGrid>
 		</p:fieldset>
-						
+				<br />		
 		<p:fieldset legend="#{messages['oferta.label']}" toggleable="true" toggleSpeed="500">
 			<h:panelGrid id="fieldsoferta" columns="1"> 
-				<p:commandButton value="#{messages['button.new']}" action="#{receitaEditMB.addOferta}" update="listOferta"/>
-				<p:dataTable id="listOferta" var="oferta" value="#{receitaEditMB.ofertaList}" rowIndexVar="index">
+				
+				<p:dataTable id="listOferta" var="oferta" value="#{receitaEditMB.ofertaList}" rowIndexVar="index" emptyMessage=" ">
 						
 			        <p:column>
   			           <h:outputLabel value="#{messages['oferta.label.codigo']}: " for="codigo" styleClass="text-input" />
@@ -127,7 +113,7 @@
 			        <p:column>
   			           <h:outputLabel value="#{messages['oferta.label.valor']}: " for="valor" styleClass="text-input" />
 						    
-			           <h:inputText id="valor" value="#{oferta.valor}"
+			           <h:inputText id="valor" value="#{oferta.valorOferta}"
 				          title="#{messages['oferta.alt.valor']}" />
 						                   
 					   <p:message for="valor" />
@@ -138,13 +124,27 @@
 					   <p:commandButton value="#{messages['button.delete']}" action="#{receitaEditMB.deleteOferta}" ajax="false"/>
 				   </p:column>
 				</p:dataTable>
+				
+				<p:toolbar>
+							<f:facet name="right">
+								<p:commandButton value="#{messages['button.new']}" action="#{receitaEditMB.addOferta}" update="listOferta">
+								</p:commandButton>
+							</f:facet>
+				</p:toolbar>
+				
+				<h:outputLabel value="#{messages['receita.label.valorTotalOferta']}: " for="valorTotalOferta" styleClass="text-input" />
+					
+					<h:inputText id="valorTotalOferta" value="#{receitaEditMB.bean.valorTotalOferta}" disabled="true"
+						title="#{messages['receita.alt.valorTotalOferta']}" />
+					
+					<p:message for="valorTotalOferta" />
 			</h:panelGrid>
 		</p:fieldset>
-						
+			<br />			
 		<p:fieldset legend="#{messages['recursoDiverso.label']}" toggleable="true" toggleSpeed="500">
 			<h:panelGrid id="fieldsrecursoDiverso" columns="1"> 
-				<p:commandButton value="#{messages['button.new']}" action="#{receitaEditMB.addRecursoDiverso}" update="listRecursoDiverso"/>
-				<p:dataTable id="listRecursoDiverso" var="recursoDiverso" value="#{receitaEditMB.recursoDiversoList}" rowIndexVar="index">
+				
+				<p:dataTable id="listRecursoDiverso" var="recursoDiverso" value="#{receitaEditMB.recursoDiversoList}" rowIndexVar="index" emptyMessage=" ">
 						
 			        <p:column>
   			           <h:outputLabel value="#{messages['recursoDiverso.label.codigo']}: " for="codigo" styleClass="text-input" />
@@ -166,7 +166,7 @@
 			        <p:column>
   			           <h:outputLabel value="#{messages['recursoDiverso.label.valor']}: " for="valor" styleClass="text-input" />
 						    
-			           <h:inputText id="valor" value="#{recursoDiverso.valor}"
+			           <h:inputText id="valor" value="#{recursoDiverso.valorRecursoDiverso}" 
 				          title="#{messages['recursoDiverso.alt.valor']}" />
 						                   
 					   <p:message for="valor" />
@@ -177,8 +177,41 @@
 					   <p:commandButton value="#{messages['button.delete']}" action="#{receitaEditMB.deleteRecursoDiverso}" ajax="false"/>
 				   </p:column>
 				</p:dataTable>
+				
+				<p:toolbar>
+							<f:facet name="right">
+								<p:commandButton value="#{messages['button.new']}" action="#{receitaEditMB.addRecursoDiverso}" update="listRecursoDiverso">
+								</p:commandButton>
+							</f:facet>
+				</p:toolbar>
+				
+				<h:outputLabel value="#{messages['receita.label.valorTotalRecursoDiverso']}: " for="valorTotalRecursoDiverso" styleClass="text-input" />
+					
+					<h:inputText id="valorTotalRecursoDiverso" value="#{receitaEditMB.bean.valorTotalRecursoDiverso}" disabled="true"
+						title="#{messages['receita.alt.valorTotalRecursoDiverso']}" />
+					
+					<p:message for="valorTotalRecursoDiverso" />
+						
+				
 			</h:panelGrid>
 		</p:fieldset>
+			<br />		
+					<p:toolbar>
+				<p:toolbarGroup align="left">
+					<p:commandButton value="#{messages['button.save']}" action="#{receitaEditMB.insert}"
+						rendered="#{!receitaEditMB.updateMode}" ajax="false" />
+					<p:commandButton value="#{messages['button.save']}" action="#{receitaEditMB.update}"
+						rendered="#{receitaEditMB.updateMode}" ajax="false" />
+					<p:commandButton value="#{messages['button.delete']}" onclick="confirmation.show()"
+						rendered="#{receitaEditMB.updateMode}" type="button" immediate="true" ajax="false" />
+					<p:confirmDialog message="#{messages['label.confirm.delete']}" showEffect="bounce" hideEffect="explode"
+						header="#{messages['label.dialog.delete']}" severity="alert" widgetVar="confirmation">
+						<h:commandButton value="#{messages['button.dialog.yes']}" action="#{receitaEditMB.delete}" immediate="true"
+							ajax="false" />
+						<h:commandButton value="#{messages['button.dialog.no']}" onclick="confirmation.hide()" type="button" />
+					</p:confirmDialog>
+				</p:toolbarGroup>
+			</p:toolbar>
 						
 		</h:form>
 	</ui:define>

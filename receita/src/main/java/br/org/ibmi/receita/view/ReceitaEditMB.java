@@ -2,15 +2,20 @@
 package br.org.ibmi.receita.view;
 
 import javax.inject.Inject;
+
 import br.gov.frameworkdemoiselle.annotation.PreviousView;
 import br.gov.frameworkdemoiselle.stereotype.ViewController;
 import br.gov.frameworkdemoiselle.template.AbstractEditPageBean;
 import br.gov.frameworkdemoiselle.transaction.Transactional;
 import br.org.ibmi.receita.business.*;
 import br.org.ibmi.receita.domain.*;
+
 import javax.faces.model.*;
+
 import org.primefaces.event.TransferEvent;
 import org.primefaces.model.DualListModel;
+
+import java.text.DateFormatSymbols;
 import java.util.*;
 
 // To remove unused imports press: Ctrl+Shift+o
@@ -93,4 +98,25 @@ public class ReceitaEditMB extends AbstractEditPageBean<Receita, Long> {
 	protected Receita handleLoad(Long id) {
 		return this.receitaBC.load(id);
 	}	
+	
+	public void obterDiaNumeroSemana(){
+		
+		   Date data = new Date(); 
+		  
+		   data =  this.getBean().getData();  
+		   
+		   Calendar cal = new GregorianCalendar();
+		   
+		   cal.setTime(data);
+		
+		   String diaDaSemana = new DateFormatSymbols().getWeekdays()[cal.get(Calendar.DAY_OF_WEEK)];
+		   
+		   this.getBean().setDiaSemana(diaDaSemana);
+		   
+		   Integer numeroDaSemana = cal.get(Calendar.WEEK_OF_MONTH);		   
+		   
+		   this.getBean().setNumeroSemanaMes(numeroDaSemana);
+		
+		
+	}
 }
