@@ -30,8 +30,11 @@ public class Oferta implements Serializable{
 	private Long codigo;
 	
 	
-	@Column
+	@Column (name="valor_oferta")
 	private Money valorOferta;
+	
+	@Column (name="valor_oferta_string")
+	private String valorOfertaString;
 	
 	@ManyToOne(optional = true)
 	@JoinColumn(name = "cod_tipo_oferta", nullable=false)
@@ -53,6 +56,23 @@ public class Oferta implements Serializable{
 		this.tipoOferta = tipoOferta;
 	}
 
+	
+	public Money getValorOferta() {
+		return valorOferta;
+	}
+
+	public void setValorOferta(Money valorOferta) {
+		this.valorOferta = valorOferta;
+	}
+
+	public String getValorOfertaString() {
+		return valorOfertaString;
+	}
+
+	public void setValorOfertaString(String valorOfertaString) {
+		this.valorOfertaString = valorOfertaString;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -60,6 +80,12 @@ public class Oferta implements Serializable{
 		result = prime * result + ((codigo == null) ? 0 : codigo.hashCode());
 		result = prime * result
 				+ ((tipoOferta == null) ? 0 : tipoOferta.hashCode());
+		result = prime * result
+				+ ((valorOferta == null) ? 0 : valorOferta.hashCode());
+		result = prime
+				* result
+				+ ((valorOfertaString == null) ? 0 : valorOfertaString
+						.hashCode());
 		return result;
 	}
 
@@ -82,17 +108,21 @@ public class Oferta implements Serializable{
 				return false;
 		} else if (!tipoOferta.equals(other.tipoOferta))
 			return false;
+		if (valorOferta == null) {
+			if (other.valorOferta != null)
+				return false;
+		} else if (!valorOferta.equals(other.valorOferta))
+			return false;
+		if (valorOfertaString == null) {
+			if (other.valorOfertaString != null)
+				return false;
+		} else if (!valorOfertaString.equals(other.valorOfertaString))
+			return false;
 		return true;
 	}
 
-	public Money getValorOferta() {
-		return valorOferta;
-	}
-
-	public void setValorOferta(Money valorOferta) {
-		this.valorOferta = valorOferta;
-	}
-
+	
+	
 	
 	
 	

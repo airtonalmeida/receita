@@ -31,8 +31,11 @@ public class RecursoDiverso implements Serializable{
 	@Column
 	private String descricao;
 	
-	@Column
+	@Column (name="valor_rec_div")
 	private Money valorRecursoDiverso;
+	
+	@Column (name="valor_rec__div_string")
+	private String valorRecursoDiversoString;
 
 	public Long getCodigo() {
 		return codigo;
@@ -49,6 +52,22 @@ public class RecursoDiverso implements Serializable{
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
 	}	
+	
+	public Money getValorRecursoDiverso() {
+		return valorRecursoDiverso;
+	}
+
+	public void setValorRecursoDiverso(Money valorRecursoDiverso) {
+		this.valorRecursoDiverso = valorRecursoDiverso;
+	}
+
+	public String getValorRecursoDiversoString() {
+		return valorRecursoDiversoString;
+	}
+
+	public void setValorRecursoDiversoString(String valorRecursoDiversoString) {
+		this.valorRecursoDiversoString = valorRecursoDiversoString;
+	}
 
 	@Override
 	public int hashCode() {
@@ -57,6 +76,14 @@ public class RecursoDiverso implements Serializable{
 		result = prime * result + ((codigo == null) ? 0 : codigo.hashCode());
 		result = prime * result
 				+ ((descricao == null) ? 0 : descricao.hashCode());
+		result = prime
+				* result
+				+ ((valorRecursoDiverso == null) ? 0 : valorRecursoDiverso
+						.hashCode());
+		result = prime
+				* result
+				+ ((valorRecursoDiversoString == null) ? 0
+						: valorRecursoDiversoString.hashCode());
 		return result;
 	}
 
@@ -79,16 +106,21 @@ public class RecursoDiverso implements Serializable{
 				return false;
 		} else if (!descricao.equals(other.descricao))
 			return false;
+		if (valorRecursoDiverso == null) {
+			if (other.valorRecursoDiverso != null)
+				return false;
+		} else if (!valorRecursoDiverso.equals(other.valorRecursoDiverso))
+			return false;
+		if (valorRecursoDiversoString == null) {
+			if (other.valorRecursoDiversoString != null)
+				return false;
+		} else if (!valorRecursoDiversoString
+				.equals(other.valorRecursoDiversoString))
+			return false;
 		return true;
 	}
 
-	public Money getValorRecursoDiverso() {
-		return valorRecursoDiverso;
-	}
-
-	public void setValorRecursoDiverso(Money valorRecursoDiverso) {
-		this.valorRecursoDiverso = valorRecursoDiverso;
-	}
+	
 
 	
 

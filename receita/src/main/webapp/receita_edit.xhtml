@@ -6,7 +6,7 @@
 	<ui:define name="body">
 		<h:form id="form" prependId="false">	
 
-			<p:fieldset legend="Dados" toggleable="true" toggleSpeed="500">
+			<p:fieldset legend="Data" toggleable="true" toggleSpeed="500">
 				<h:panelGrid id="fieldsdados" columns="3">
 				
 				<p:outputLabel value="#{messages['receita.label.data']}: " for="data" styleClass="text-input" />
@@ -43,12 +43,12 @@
 			
 			<p:fieldset legend="#{messages['receita.label']}"  toggleSpeed="500">
 				<h:panelGrid id="fieldsreceita" columns="3">
-		         <h:outputLabel value="#{messages['receita.label.valorTotalReceita']}: " for="valorTotalReceita" styleClass="text-input" />
+		         <h:outputLabel value="#{messages['receita.label.valorTotalReceita']}: " for="valorTotalReceitaString" styleClass="text-input" />
 					
-					<h:inputText id="valorTotalReceita" value="#{receitaEditMB.bean.valorTotalReceita}" disabled="true"
+					<h:inputText id="valorTotalReceitaString" value="#{receitaEditMB.bean.valorTotalReceitaString}" disabled="true"
 						title="#{messages['receita.alt.valorTotalReceita']}" />
 					
-					<p:message for="valorTotalReceita" />	
+					<p:message for="valorTotalReceitaString" />	
 						
 				</h:panelGrid>
 		</p:fieldset>
@@ -56,23 +56,16 @@
 		<p:fieldset legend="#{messages['dizimo.label']}" toggleable="true" toggleSpeed="500">
 			<h:panelGrid id="fieldsdizimo" columns="1"> 
 				
-				<p:dataTable id="listDizimo" var="dizimo" value="#{receitaEditMB.dizimoList}" rowIndexVar="index" emptyMessage=" ">
-						
-			        <p:column>
-  			           <h:outputLabel value="#{messages['dizimo.label.codigo']}: " for="codigo" styleClass="text-input" />
-						    
-			           <h:outputText id="codigo" value="#{dizimo.codigo}" />
-				             
-					   <p:message for="codigo" />
-			  	   </p:column>					  
+				<p:dataTable id="listDizimo" var="dizimo" value="#{receitaEditMB.dizimoList}" rowIndexVar="index" emptyMessage=" " converter="ConversorDizimo">			
+			     		  
 				
 			        <p:column>
-  			           <h:outputLabel value="#{messages['dizimo.label.valor']}: " for="valor" styleClass="text-input" />
+  			           <h:outputLabel value="#{messages['dizimo.label.valor']}: " for="valorDizimoString" styleClass="text-input" />
 						    
-			           <h:inputText id="valor" value="#{dizimo.valorDizimo}"
+			           <h:inputText id="valorDizimoString" value="#{dizimo.valorDizimoString}"
 				          title="#{messages['dizimo.alt.valor']}" />
 						                   
-					   <p:message for="valor" />
+					   <p:message for="valorDizimoString" />
 			  	   </p:column>					  
 				
 				   <p:column>
@@ -87,12 +80,12 @@
 								</p:commandButton>
 							</f:facet>
 				</p:toolbar>	
-				<h:outputLabel value="#{messages['receita.label.valorTotalDizimo']}: " for="valorTotalDizimo" styleClass="text-input" />
+				<h:outputLabel value="#{messages['receita.label.valorTotalDizimo']}: " for="valorTotalDizimoString" styleClass="text-input" />
 					
-					<h:inputText id="valorTotalDizimo" value="#{receitaEditMB.bean.valorTotalDizimo}" disabled="true"
+					<h:inputText id="valorTotalDizimoString" value="#{receitaEditMB.bean.valorTotalDizimoString}" disabled="true"
 						title="#{messages['receita.alt.valorTotalDizimo']}" />
 					
-					<p:message for="valorTotalDizimo" />	
+					<p:message for="valorTotalDizimoString" />	
 				
 			</h:panelGrid>
 		</p:fieldset>
@@ -100,24 +93,32 @@
 		<p:fieldset legend="#{messages['oferta.label']}" toggleable="true" toggleSpeed="500">
 			<h:panelGrid id="fieldsoferta" columns="1"> 
 				
-				<p:dataTable id="listOferta" var="oferta" value="#{receitaEditMB.ofertaList}" rowIndexVar="index" emptyMessage=" ">
-						
-			        <p:column>
-  			           <h:outputLabel value="#{messages['oferta.label.codigo']}: " for="codigo" styleClass="text-input" />
-						    
-			           <h:outputText id="codigo" value="#{oferta.codigo}" />
-				             
-					   <p:message for="codigo" />
-			  	   </p:column>					  
+				<p:dataTable id="listOferta" var="oferta" value="#{receitaEditMB.ofertaList}" rowIndexVar="index" emptyMessage=" ">				
+			   	  
 				
 			        <p:column>
-  			           <h:outputLabel value="#{messages['oferta.label.valor']}: " for="valor" styleClass="text-input" />
+  			           <h:outputLabel value="#{messages['oferta.label.valor']}: " for="valorOfertaString" styleClass="text-input" />
 						    
-			           <h:inputText id="valor" value="#{oferta.valorOferta}"
+			           <h:inputText id="valorOfertaString" value="#{oferta.valorOfertaString}"
 				          title="#{messages['oferta.alt.valor']}" />
 						                   
-					   <p:message for="valor" />
-			  	   </p:column>					  
+					   <p:message for="valorOfertaString" />
+			  	   </p:column>	
+			  	   
+			  	   <h:outputLabel value="#{messages['tipoOferta.label']}: " for="evento"
+						styleClass="text-input" />
+					<p:selectOneMenu id="evento"
+						value="#{controleDespezasEditMB.bean.evento}" effect="fade"
+						converter="ConversorEvento">
+						<f:selectItem itemLabel="Selecione" itemValue="" />
+						<f:selectItems value="#{controleDespezasEditMB.eventoList}"
+							var="varEvento" itemLabel="#{varEvento.descricao}"
+							itemValue="#{varEvento}" />
+						<p:ajax event="change"
+							update=":form1:valorEstimadoEvento,:form1:percentual,:form1:barra"
+							listener="#{controleDespezasEditMB.calculaPercentual}" />
+					</p:selectOneMenu>
+					<p:message for="evento" />				  
 				
 				   <p:column>
 					   <f:facet name="header">#{messages['label.action']}</f:facet>
@@ -132,12 +133,12 @@
 							</f:facet>
 				</p:toolbar>
 				
-				<h:outputLabel value="#{messages['receita.label.valorTotalOferta']}: " for="valorTotalOferta" styleClass="text-input" />
+				<h:outputLabel value="#{messages['receita.label.valorTotalOferta']}: " for="valorTotalOfertaString" styleClass="text-input" />
 					
-					<h:inputText id="valorTotalOferta" value="#{receitaEditMB.bean.valorTotalOferta}" disabled="true"
+					<h:inputText id="valorTotalOfertaString" value="#{receitaEditMB.bean.valorTotalOfertaString}" disabled="true"
 						title="#{messages['receita.alt.valorTotalOferta']}" />
 					
-					<p:message for="valorTotalOferta" />
+					<p:message for="valorTotalOfertaString" />
 			</h:panelGrid>
 		</p:fieldset>
 			<br />			
@@ -146,13 +147,7 @@
 				
 				<p:dataTable id="listRecursoDiverso" var="recursoDiverso" value="#{receitaEditMB.recursoDiversoList}" rowIndexVar="index" emptyMessage=" ">
 						
-			        <p:column>
-  			           <h:outputLabel value="#{messages['recursoDiverso.label.codigo']}: " for="codigo" styleClass="text-input" />
-						    
-			           <h:outputText id="codigo" value="#{recursoDiverso.codigo}" />
-				             
-					   <p:message for="codigo" />
-			  	   </p:column>					  
+			     			  
 				
 			        <p:column>
   			           <h:outputLabel value="#{messages['recursoDiverso.label.descricao']}: " for="descricao" styleClass="text-input" />
@@ -164,12 +159,12 @@
 			  	   </p:column>					  
 				
 			        <p:column>
-  			           <h:outputLabel value="#{messages['recursoDiverso.label.valor']}: " for="valor" styleClass="text-input" />
+  			           <h:outputLabel value="#{messages['recursoDiverso.label.valor']}: " for="valorRecursoDiversoString" styleClass="text-input" />
 						    
-			           <h:inputText id="valor" value="#{recursoDiverso.valorRecursoDiverso}" 
+			           <h:inputText id="valorRecursoDiversoString" value="#{recursoDiverso.valorRecursoDiversoString}" 
 				          title="#{messages['recursoDiverso.alt.valor']}" />
 						                   
-					   <p:message for="valor" />
+					   <p:message for="valorRecursoDiversoString" />
 			  	   </p:column>					  
 				
 				   <p:column>
@@ -185,12 +180,12 @@
 							</f:facet>
 				</p:toolbar>
 				
-				<h:outputLabel value="#{messages['receita.label.valorTotalRecursoDiverso']}: " for="valorTotalRecursoDiverso" styleClass="text-input" />
+				<h:outputLabel value="#{messages['receita.label.valorTotalRecursoDiverso']}: " for="valorTotalRecursoDiversoString" styleClass="text-input" />
 					
-					<h:inputText id="valorTotalRecursoDiverso" value="#{receitaEditMB.bean.valorTotalRecursoDiverso}" disabled="true"
+					<h:inputText id="valorTotalRecursoDiversoString" value="#{receitaEditMB.bean.valorTotalRecursoDiversoString}" disabled="true"
 						title="#{messages['receita.alt.valorTotalRecursoDiverso']}" />
 					
-					<p:message for="valorTotalRecursoDiverso" />
+					<p:message for="valorTotalRecursoDiversoString" />
 						
 				
 			</h:panelGrid>

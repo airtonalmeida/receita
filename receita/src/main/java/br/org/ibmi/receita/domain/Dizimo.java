@@ -27,9 +27,12 @@ public class Dizimo implements Serializable{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long codigo;
 	
-	@Column
+	@Column (name="valor_dizimo")
 	private Money valorDizimo;
-
+	
+	@Column (name="valor_dizimo_string")
+	private String valorDizimoString;
+	
 	public Long getCodigo() {
 		return codigo;
 	}
@@ -38,16 +41,23 @@ public class Dizimo implements Serializable{
 		this.codigo = codigo;
 	}
 
-
-
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((codigo == null) ? 0 : codigo.hashCode());
-		return result;
+	public Money getValorDizimo() {
+		return valorDizimo;
 	}
 
+	public void setValorDizimo(Money valorDizimo) {
+		this.valorDizimo = valorDizimo;
+	}
+	
+	public String getValorDizimoString() {
+		return valorDizimoString;
+	}
+
+	public void setValorDizimoString(String valorDizimoString) {
+		this.valorDizimoString = valorDizimoString;
+	}
+
+	
 	public Dizimo(Long codigo, Money valorDizimo) {
 		super();
 		this.codigo = codigo;
@@ -57,6 +67,20 @@ public class Dizimo implements Serializable{
 	public Dizimo() {
 		super();
 	
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((codigo == null) ? 0 : codigo.hashCode());
+		result = prime * result
+				+ ((valorDizimo == null) ? 0 : valorDizimo.hashCode());
+		result = prime
+				* result
+				+ ((valorDizimoString == null) ? 0 : valorDizimoString
+						.hashCode());
+		return result;
 	}
 
 	@Override
@@ -73,16 +97,22 @@ public class Dizimo implements Serializable{
 				return false;
 		} else if (!codigo.equals(other.codigo))
 			return false;
+		if (valorDizimo == null) {
+			if (other.valorDizimo != null)
+				return false;
+		} else if (!valorDizimo.equals(other.valorDizimo))
+			return false;
+		if (valorDizimoString == null) {
+			if (other.valorDizimoString != null)
+				return false;
+		} else if (!valorDizimoString.equals(other.valorDizimoString))
+			return false;
 		return true;
 	}
 
-	public Money getValorDizimo() {
-		return valorDizimo;
-	}
 
-	public void setValorDizimo(Money valorDizimo) {
-		this.valorDizimo = valorDizimo;
-	}
+	
+
 
 	
 	
