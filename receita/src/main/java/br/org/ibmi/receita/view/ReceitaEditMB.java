@@ -1,22 +1,27 @@
 
 package br.org.ibmi.receita.view;
 
+import java.text.DateFormatSymbols;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
+import java.util.List;
+
+import javax.faces.model.DataModel;
+import javax.faces.model.ListDataModel;
 import javax.inject.Inject;
 
 import br.gov.frameworkdemoiselle.annotation.PreviousView;
 import br.gov.frameworkdemoiselle.stereotype.ViewController;
 import br.gov.frameworkdemoiselle.template.AbstractEditPageBean;
 import br.gov.frameworkdemoiselle.transaction.Transactional;
-import br.org.ibmi.receita.business.*;
-import br.org.ibmi.receita.domain.*;
-
-import javax.faces.model.*;
-
-import org.primefaces.event.TransferEvent;
-import org.primefaces.model.DualListModel;
-
-import java.text.DateFormatSymbols;
-import java.util.*;
+import br.org.ibmi.receita.business.ReceitaBC;
+import br.org.ibmi.receita.business.TipoOfertaBC;
+import br.org.ibmi.receita.domain.Dizimo;
+import br.org.ibmi.receita.domain.Oferta;
+import br.org.ibmi.receita.domain.Receita;
+import br.org.ibmi.receita.domain.RecursoDiverso;
+import br.org.ibmi.receita.domain.TipoOferta;
 
 // To remove unused imports press: Ctrl+Shift+o
 
@@ -29,6 +34,12 @@ public class ReceitaEditMB extends AbstractEditPageBean<Receita, Long> {
 	@Inject
 	private ReceitaBC receitaBC;
 	
+	@Inject
+	private TipoOfertaBC tipoOfertaBC;
+	
+	public List<TipoOferta> getTipoOfertaList(){
+		return tipoOfertaBC.findAll();
+	}
 
 	private DataModel<Dizimo> dizimoList;
 	

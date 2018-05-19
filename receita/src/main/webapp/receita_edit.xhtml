@@ -104,22 +104,20 @@
 						                   
 					   <p:message for="valorOfertaString" />
 			  	   </p:column>	
-			  	   
-			  	   <h:outputLabel value="#{messages['tipoOferta.label']}: " for="evento"
+			  	   <p:column>
+			  	   <h:outputLabel value="#{messages['tipoOferta.label']}: " for="tipoOferta"
 						styleClass="text-input" />
-					<p:selectOneMenu id="evento"
-						value="#{controleDespezasEditMB.bean.evento}" effect="fade"
-						converter="ConversorEvento">
-						<f:selectItem itemLabel="Selecione" itemValue="" />
-						<f:selectItems value="#{controleDespezasEditMB.eventoList}"
-							var="varEvento" itemLabel="#{varEvento.descricao}"
-							itemValue="#{varEvento}" />
-						<p:ajax event="change"
-							update=":form1:valorEstimadoEvento,:form1:percentual,:form1:barra"
-							listener="#{controleDespezasEditMB.calculaPercentual}" />
+					<p:selectOneMenu id="tipoOferta"
+						value="#{oferta.tipoOferta}" effect="fade"
+						converter="ConversorTipoOferta">
+						<f:selectItem itemLabel="Selecione o Tipo de Oferta" itemValue="" />
+						<f:selectItems value="#{receitaEditMB.tipoOfertaList}"
+							var="varTipoOferta" itemLabel="#{varTipoOferta.descricao}"
+							itemValue="#{varTipoOferta}" />
+						
 					</p:selectOneMenu>
-					<p:message for="evento" />				  
-				
+					<p:message for="tipoOferta" />				  
+				</p:column>
 				   <p:column>
 					   <f:facet name="header">#{messages['label.action']}</f:facet>
 					   <p:commandButton value="#{messages['button.delete']}" action="#{receitaEditMB.deleteOferta}" ajax="false"/>
