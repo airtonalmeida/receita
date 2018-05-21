@@ -1,5 +1,6 @@
 package br.org.ibmi.receita.util;
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.text.ParseException;
@@ -41,6 +42,26 @@ public class Util implements Serializable{
 							
 		return dx.substring(3);	
 		
+	}
+	
+	public BigDecimal converteStringBigDecimal (String valor){	
+		
+		DecimalFormat formato = new DecimalFormat("");
+				
+		BigDecimal valorBigDecimal = null;	
+		
+		
+		formato.applyLocalizedPattern("#.#00,0#");
+		formato.setParseBigDecimal(true);
+		try {
+			valorBigDecimal = (BigDecimal) formato.parse(valor);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+							
+		return valorBigDecimal;
+			
 	}
 	
 	
