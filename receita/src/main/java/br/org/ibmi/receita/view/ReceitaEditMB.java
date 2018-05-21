@@ -126,7 +126,12 @@ public class ReceitaEditMB extends AbstractEditPageBean<Receita, Long> {
 		   
 		   Integer numeroDaSemana = cal.get(Calendar.WEEK_OF_MONTH);		   
 		   
-		   this.getBean().setNumeroSemanaMes(numeroDaSemana);
+		   this.getBean().setNumeroSemanaMes(numeroDaSemana);		
+		
+	}
+	
+	public void calcularValorTotalDizimo() {
+		
 		
 		
 	}
