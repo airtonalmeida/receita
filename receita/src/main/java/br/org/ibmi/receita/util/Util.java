@@ -48,8 +48,7 @@ public class Util implements Serializable{
 		
 		DecimalFormat formato = new DecimalFormat("");
 				
-		BigDecimal valorBigDecimal = null;	
-		
+		BigDecimal valorBigDecimal = null;			
 		
 		formato.applyLocalizedPattern("#.#00,0#");
 		formato.setParseBigDecimal(true);

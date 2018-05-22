@@ -62,9 +62,12 @@
 			        <p:column>
   			           <h:outputLabel value="#{messages['dizimo.label.valor']}: " for="valorDizimoString" styleClass="text-input" />
 						    
-			           <h:inputText id="valorDizimoString" value="#{dizimo.valorDizimoString}"
-				          title="#{messages['dizimo.alt.valor']}" />
-						                   
+			           <p:inputText id="valorDizimoString" value="#{dizimo.valorDizimoString}"
+				          title="#{messages['dizimo.alt.valor']}" >
+				          <p:ajax event="blur"
+										update=":form:valorTotalDizimoString"
+										listener="#{receitaEditMB.calcularValorTotalDizimo}" />
+					 </p:inputText>                   
 					   <p:message for="valorDizimoString" />
 			  	   </p:column>					  
 				
@@ -84,6 +87,7 @@
 					
 					<h:inputText id="valorTotalDizimoString" value="#{receitaEditMB.bean.valorTotalDizimoString}" disabled="true"
 						title="#{messages['receita.alt.valorTotalDizimo']}" />
+						
 					
 					<p:message for="valorTotalDizimoString" />	
 				
