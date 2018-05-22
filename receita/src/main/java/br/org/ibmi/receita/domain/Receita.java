@@ -1,6 +1,7 @@
 package br.org.ibmi.receita.domain;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -38,10 +39,10 @@ public class Receita implements Serializable{
 	private Long codigo;	
 	
 	@Column(name="valor_total_receita")
-	private Money valorTotalReceita;
+	private BigDecimal valorTotalReceita;
 	
 	@Column(name="valor_total_dizimo")
-	private Money valorTotalDizimo;
+	private BigDecimal valorTotalDizimo;
 	
 	@Column(name="valor_total_oferta")
 	private Money valorTotalOferta;
@@ -90,9 +91,6 @@ public class Receita implements Serializable{
 		this.codigo = codigo;
 	}
 
-	public MonetaryAmount getValorTotalReceita() {
-		return valorTotalReceita;
-	}
 
 	public List<Oferta> getOfertas() {
 		return ofertas;
@@ -142,13 +140,7 @@ public class Receita implements Serializable{
 		this.numeroSemanaMes = numeroSemanaMes;
 	}	
 
-	public Money getValorTotalDizimo() {
-		return valorTotalDizimo;
-	}
-
-	public void setValorTotalDizimo(Money valorTotalDizimo) {
-		this.valorTotalDizimo = valorTotalDizimo;
-	}
+	
 
 	public Money getValorTotalOferta() {
 		return valorTotalOferta;
@@ -166,9 +158,7 @@ public class Receita implements Serializable{
 		this.valorTotalRecursoDiverso = valorTotalRecursoDiverso;
 	}
 
-	public void setValorTotalReceita(Money valorTotalReceita) {
-		this.valorTotalReceita = valorTotalReceita;
-	}
+	
 
 	public String getValorTotalReceitaString() {
 		return valorTotalReceitaString;
@@ -201,6 +191,22 @@ public class Receita implements Serializable{
 	public void setValorTotalRecursoDiversoString(
 			String valorTotalRecursoDiversoString) {
 		this.valorTotalRecursoDiversoString = valorTotalRecursoDiversoString;
+	}
+
+	public BigDecimal getValorTotalReceita() {
+		return valorTotalReceita;
+	}
+
+	public void setValorTotalReceita(BigDecimal valorTotalReceita) {
+		this.valorTotalReceita = valorTotalReceita;
+	}
+
+	public BigDecimal getValorTotalDizimo() {
+		return valorTotalDizimo;
+	}
+
+	public void setValorTotalDizimo(BigDecimal valorTotalDizimo) {
+		this.valorTotalDizimo = valorTotalDizimo;
 	}
 
 	@Override
@@ -339,7 +345,9 @@ public class Receita implements Serializable{
 				.equals(other.valorTotalRecursoDiversoString))
 			return false;
 		return true;
-	}	
+	}
+
+	
 	
 	
 

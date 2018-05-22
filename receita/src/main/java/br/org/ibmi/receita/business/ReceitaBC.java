@@ -2,6 +2,7 @@
 package br.org.ibmi.receita.business;
 
 import java.math.BigDecimal;
+import java.text.NumberFormat;
 import java.util.Iterator;
 
 import javax.inject.Inject;
@@ -24,10 +25,17 @@ public class ReceitaBC extends DelegateCrud<Receita, Long, ReceitaDAO> {
 	private Util util;
 	
 	public Receita calcularValorTotalDizimo(Receita receita) {
+		BigDecimal valor = null;
 		
-		String valor = receita.getValorTotalDizimoString();
+		 if(receita.getValorTotalDizimo() !=null){
+			 
+			 valor = receita.getValorTotalDizimo();
+		 }else{
+			 
+			 valor = new BigDecimal(0);			 
+		 }
 	
-		BigDecimal valorTotalDizimo = util.converteStringBigDecimal(valor);
+		BigDecimal valorTotalDizimo = valor;
 		
 		for (Iterator<Dizimo> iterator = receita.getDizimos().iterator(); iterator
 				.hasNext();) {
@@ -38,6 +46,16 @@ public class ReceitaBC extends DelegateCrud<Receita, Long, ReceitaDAO> {
 						(util.converteStringBigDecimal(dizimo.getValorDizimoString()));
 			}
 		}
+		
+		BigDecimal bd = BigDecimal.valueOf(valorTotalDizimo.doubleValue());
+		
+		NumberFormat nf = NumberFormat.getCurrencyInstance();
+		
+		String s = nf.format (bd);
+		
+		receita.setValorTotalDizimoString(s);
+		
+		receita.setValorTotalDizimo(valorTotalDizimo);
 		
 		return receita;		
 		

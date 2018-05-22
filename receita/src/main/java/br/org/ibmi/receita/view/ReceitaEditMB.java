@@ -134,7 +134,7 @@ public class ReceitaEditMB extends AbstractEditPageBean<Receita, Long> {
 		
 		Receita receita = new Receita();
 		
-		receita = receitaBC.calcularValorTotalDizimo(receita);
+		receita = receitaBC.calcularValorTotalDizimo(this.getBean());
 		
 		this.getBean().setValorTotalDizimoString(receita.getValorTotalDizimoString());
 		
