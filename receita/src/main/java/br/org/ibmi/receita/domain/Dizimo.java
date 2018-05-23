@@ -1,17 +1,14 @@
 package br.org.ibmi.receita.domain;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 
-import javax.money.MonetaryAmount;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.Table;
-
-import org.javamoney.moneta.Money;
 
 @Entity
 @Table(name="dizimo")
@@ -28,7 +25,7 @@ public class Dizimo implements Serializable{
 	private Long codigo;
 	
 	@Column (name="valor_dizimo")
-	private Money valorDizimo;
+	private BigDecimal valorDizimo;
 	
 	@Column (name="valor_dizimo_string")
 	private String valorDizimoString;
@@ -41,11 +38,11 @@ public class Dizimo implements Serializable{
 		this.codigo = codigo;
 	}
 
-	public Money getValorDizimo() {
+	public BigDecimal getValorDizimo() {
 		return valorDizimo;
 	}
 
-	public void setValorDizimo(Money valorDizimo) {
+	public void setValorDizimo(BigDecimal valorDizimo) {
 		this.valorDizimo = valorDizimo;
 	}
 	
@@ -58,7 +55,7 @@ public class Dizimo implements Serializable{
 	}
 
 	
-	public Dizimo(Long codigo, Money valorDizimo) {
+	public Dizimo(Long codigo, BigDecimal valorDizimo) {
 		super();
 		this.codigo = codigo;
 		this.valorDizimo = valorDizimo;

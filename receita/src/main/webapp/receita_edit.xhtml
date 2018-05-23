@@ -42,10 +42,10 @@
 			<br />
 			
 			<p:fieldset legend="#{messages['receita.label']}"  toggleSpeed="500">
-				<h:panelGrid id="fieldsreceita" columns="3">
+				<h:panelGrid id="fieldsreceita" columns="2">
 		         <h:outputLabel value="#{messages['receita.label.valorTotalReceita']}: " for="valorTotalReceitaString" styleClass="text-input" />
 					
-					<h:inputText id="valorTotalReceitaString" value="#{receitaEditMB.bean.valorTotalReceitaString}" disabled="true"
+					<p:outputLabel id="valorTotalReceitaString" value="#{receitaEditMB.bean.valorTotalReceitaString}" disabled="true"
 						title="#{messages['receita.alt.valorTotalReceita']}" />
 					
 					<p:message for="valorTotalReceitaString" />	
@@ -56,8 +56,7 @@
 		<p:fieldset legend="#{messages['dizimo.label']}" toggleable="true" toggleSpeed="500">
 			<h:panelGrid id="fieldsdizimo" columns="1"> 
 				
-				<p:dataTable id="listDizimo" var="dizimo" value="#{receitaEditMB.dizimoList}" rowIndexVar="index" emptyMessage=" " converter="ConversorDizimo">			
-			     		  
+				<p:dataTable id="listDizimo" var="dizimo" value="#{receitaEditMB.dizimoList}" rowIndexVar="index" emptyMessage=" " converter="ConversorDizimo">				     		  
 				
 			        <p:column>
   			           <h:outputLabel value="#{messages['dizimo.label.valor']}: " for="valorDizimoString" styleClass="text-input" />
@@ -65,7 +64,7 @@
 			           <p:inputText id="valorDizimoString" value="#{dizimo.valorDizimoString}"
 				          title="#{messages['dizimo.alt.valor']}" >
 				          <p:ajax event="blur"
-										update=":form:valorTotalDizimoString"
+										update=":form:valorTotalDizimoString,:form:valorTotalReceitaString"
 										listener="#{receitaEditMB.calcularValorTotalDizimo}" />
 					 </p:inputText>                   
 					   <p:message for="valorDizimoString" />
@@ -85,7 +84,7 @@
 				</p:toolbar>	
 				<h:outputLabel value="#{messages['receita.label.valorTotalDizimo']}: " for="valorTotalDizimoString" styleClass="text-input" />
 					
-					<h:inputText id="valorTotalDizimoString" value="#{receitaEditMB.bean.valorTotalDizimoString}" disabled="true"
+					<p:outputLabel id="valorTotalDizimoString" value="#{receitaEditMB.bean.valorTotalDizimoString}" disabled="true"
 						title="#{messages['receita.alt.valorTotalDizimo']}" />
 						
 					
@@ -137,7 +136,7 @@
 				
 				<h:outputLabel value="#{messages['receita.label.valorTotalOferta']}: " for="valorTotalOfertaString" styleClass="text-input" />
 					
-					<h:inputText id="valorTotalOfertaString" value="#{receitaEditMB.bean.valorTotalOfertaString}" disabled="true"
+					<p:outputLabel id="valorTotalOfertaString" value="#{receitaEditMB.bean.valorTotalOfertaString}" disabled="true"
 						title="#{messages['receita.alt.valorTotalOferta']}" />
 					
 					<p:message for="valorTotalOfertaString" />
@@ -163,7 +162,7 @@
 			        <p:column>
   			           <h:outputLabel value="#{messages['recursoDiverso.label.valor']}: " for="valorRecursoDiversoString" styleClass="text-input" />
 						    
-			           <h:inputText id="valorRecursoDiversoString" value="#{recursoDiverso.valorRecursoDiversoString}" 
+			           <p:outputLabel id="valorRecursoDiversoString" value="#{recursoDiverso.valorRecursoDiversoString}" 
 				          title="#{messages['recursoDiverso.alt.valor']}" />
 						                   
 					   <p:message for="valorRecursoDiversoString" />

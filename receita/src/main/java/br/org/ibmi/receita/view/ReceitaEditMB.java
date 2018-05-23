@@ -47,6 +47,12 @@ public class ReceitaEditMB extends AbstractEditPageBean<Receita, Long> {
 		this.getBean().getDizimos().add(new Dizimo());
 	}
 	public void deleteDizimo() {
+		
+		Receita receita = new Receita();
+		
+		receitaBC.calcularValorTotalDizimoSubtrair(this.getBean(), getDizimoList().getRowData().getValorDizimoString());
+		
+		
 	   this.getBean().getDizimos().remove(getDizimoList().getRowData());
 	}
 	public DataModel<Dizimo> getDizimoList() {

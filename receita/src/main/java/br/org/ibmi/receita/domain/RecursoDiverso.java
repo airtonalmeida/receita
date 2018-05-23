@@ -1,17 +1,14 @@
 package br.org.ibmi.receita.domain;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 
-import javax.money.MonetaryAmount;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.Table;
-
-import org.javamoney.moneta.Money;
 
 
 @Entity
@@ -32,7 +29,7 @@ public class RecursoDiverso implements Serializable{
 	private String descricao;
 	
 	@Column (name="valor_rec_div")
-	private Money valorRecursoDiverso;
+	private BigDecimal valorRecursoDiverso;
 	
 	@Column (name="valor_rec__div_string")
 	private String valorRecursoDiversoString;
@@ -53,11 +50,11 @@ public class RecursoDiverso implements Serializable{
 		this.descricao = descricao;
 	}	
 	
-	public Money getValorRecursoDiverso() {
+	public BigDecimal getValorRecursoDiverso() {
 		return valorRecursoDiverso;
 	}
 
-	public void setValorRecursoDiverso(Money valorRecursoDiverso) {
+	public void setValorRecursoDiverso(BigDecimal valorRecursoDiverso) {
 		this.valorRecursoDiverso = valorRecursoDiverso;
 	}
 

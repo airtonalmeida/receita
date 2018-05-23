@@ -26,6 +26,9 @@ public class ReceitaBC extends DelegateCrud<Receita, Long, ReceitaDAO> {
 	
 	public Receita calcularValorTotalDizimo(Receita receita) {
 		BigDecimal valorTotalDizimo = new BigDecimal(0);
+		BigDecimal valorTotalReceita = new BigDecimal(0);
+		BigDecimal valorTotalOferta = new BigDecimal(0);
+		BigDecimal valorTotalRecursoDiverso = new BigDecimal(0);
 		
 		for (Iterator<Dizimo> iterator = receita.getDizimos().iterator(); iterator
 				.hasNext();) {
@@ -40,6 +43,73 @@ public class ReceitaBC extends DelegateCrud<Receita, Long, ReceitaDAO> {
 		receita.setValorTotalDizimoString(util.converteBigDecimalString(valorTotalDizimo));
 		
 		receita.setValorTotalDizimo(valorTotalDizimo);
+		
+		if(receita.getValorTotalOferta()!=null){
+			
+			valorTotalOferta = receita.getValorTotalOferta();
+			
+		}if(receita.getValorTotalRecursoDiverso()!=null){
+			
+			valorTotalRecursoDiverso = receita.getValorTotalRecursoDiverso();
+		}
+		
+		
+		valorTotalReceita = receita.getValorTotalDizimo().add(valorTotalOferta)
+				.add(valorTotalRecursoDiverso);
+		
+		receita.setValorTotalReceitaString(util.converteBigDecimalString(valorTotalReceita));
+		
+		receita.setValorTotalReceita(valorTotalReceita);		
+		
+		return receita;		
+		
+	}
+	
+	public Receita calcularValorTotalDizimoSubtrair(Receita receita, String valor) {
+		BigDecimal valorTotalDizimo = new BigDecimal(0);
+		BigDecimal valorTotalReceita = new BigDecimal(0);
+		BigDecimal valorTotalOferta = new BigDecimal(0);
+		BigDecimal valorTotalRecursoDiverso = new BigDecimal(0);
+		
+		if(receita.getValorTotalDizimo()!=null){
+			
+			valorTotalDizimo = receita.getValorTotalDizimo();			
+		
+		}if(receita.getValorTotalReceita()!=null){
+			
+			valorTotalReceita = receita.getValorTotalReceita();			
+		
+		}if(receita.getValorTotalOferta()!=null){
+			
+			valorTotalOferta = receita.getValorTotalOferta();			
+		
+		}if(receita.getValorTotalRecursoDiverso()!=null){
+			
+			valorTotalRecursoDiverso = receita.getValorTotalRecursoDiverso();			
+		}
+		
+		valorTotalDizimo = valorTotalDizimo.subtract(util.converteStringBigDecimal(valor));
+		
+		receita.setValorTotalDizimo(valorTotalDizimo);
+				
+		receita.setValorTotalDizimoString(util.converteBigDecimalString(valorTotalDizimo));		
+		
+		if(receita.getValorTotalOferta()!=null){
+			
+			valorTotalOferta = receita.getValorTotalOferta();
+			
+		}if(receita.getValorTotalRecursoDiverso()!=null){
+			
+			valorTotalRecursoDiverso = receita.getValorTotalRecursoDiverso();
+		}
+		
+		
+		valorTotalReceita = receita.getValorTotalDizimo().add(valorTotalOferta)
+				.add(valorTotalRecursoDiverso);
+		
+		receita.setValorTotalReceitaString(util.converteBigDecimalString(valorTotalReceita));
+		
+		receita.setValorTotalReceita(valorTotalReceita);		
 		
 		return receita;		
 		

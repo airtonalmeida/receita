@@ -5,8 +5,6 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-
-import javax.money.MonetaryAmount;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -16,12 +14,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-import org.javamoney.moneta.Money;
 
 
 @Entity
@@ -45,10 +41,10 @@ public class Receita implements Serializable{
 	private BigDecimal valorTotalDizimo;
 	
 	@Column(name="valor_total_oferta")
-	private Money valorTotalOferta;
+	private BigDecimal valorTotalOferta;
 	
 	@Column(name="valor_total_rec_div")
-	private Money valorTotalRecursoDiverso;	
+	private BigDecimal valorTotalRecursoDiverso;	
 	
 	@Column(name="valor_total_receita_str")
 	private String valorTotalReceitaString;
@@ -142,19 +138,19 @@ public class Receita implements Serializable{
 
 	
 
-	public Money getValorTotalOferta() {
+	public BigDecimal getValorTotalOferta() {
 		return valorTotalOferta;
 	}
 
-	public void setValorTotalOferta(Money valorTotalOferta) {
+	public void setValorTotalOferta(BigDecimal valorTotalOferta) {
 		this.valorTotalOferta = valorTotalOferta;
 	}
 
-	public Money getValorTotalRecursoDiverso() {
+	public BigDecimal getValorTotalRecursoDiverso() {
 		return valorTotalRecursoDiverso;
 	}
 
-	public void setValorTotalRecursoDiverso(Money valorTotalRecursoDiverso) {
+	public void setValorTotalRecursoDiverso(BigDecimal valorTotalRecursoDiverso) {
 		this.valorTotalRecursoDiverso = valorTotalRecursoDiverso;
 	}
 

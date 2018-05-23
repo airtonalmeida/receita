@@ -1,8 +1,8 @@
 package br.org.ibmi.receita.domain;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 
-import javax.money.MonetaryAmount;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,10 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
-
-import org.javamoney.moneta.Money;
 
 @Entity
 @Table(name="oferta")
@@ -31,7 +28,7 @@ public class Oferta implements Serializable{
 	
 	
 	@Column (name="valor_oferta")
-	private Money valorOferta;
+	private BigDecimal valorOferta;
 	
 	@Column (name="valor_oferta_string")
 	private String valorOfertaString;
@@ -57,11 +54,11 @@ public class Oferta implements Serializable{
 	}
 
 	
-	public Money getValorOferta() {
+	public BigDecimal getValorOferta() {
 		return valorOferta;
 	}
 
-	public void setValorOferta(Money valorOferta) {
+	public void setValorOferta(BigDecimal valorOferta) {
 		this.valorOferta = valorOferta;
 	}
 
