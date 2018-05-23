@@ -25,17 +25,7 @@ public class ReceitaBC extends DelegateCrud<Receita, Long, ReceitaDAO> {
 	private Util util;
 	
 	public Receita calcularValorTotalDizimo(Receita receita) {
-		BigDecimal valor = null;
-		
-		 if(receita.getValorTotalDizimo() !=null){
-			 
-			 valor = receita.getValorTotalDizimo();
-		 }else{
-			 
-			 valor = new BigDecimal(0);			 
-		 }
-	
-		BigDecimal valorTotalDizimo = valor;
+		BigDecimal valorTotalDizimo = new BigDecimal(0);
 		
 		for (Iterator<Dizimo> iterator = receita.getDizimos().iterator(); iterator
 				.hasNext();) {
@@ -47,13 +37,7 @@ public class ReceitaBC extends DelegateCrud<Receita, Long, ReceitaDAO> {
 			}
 		}
 		
-		BigDecimal bd = BigDecimal.valueOf(valorTotalDizimo.doubleValue());
-		
-		NumberFormat nf = NumberFormat.getCurrencyInstance();
-		
-		String s = nf.format (bd);
-		
-		receita.setValorTotalDizimoString(s);
+		receita.setValorTotalDizimoString(util.converteBigDecimalString(valorTotalDizimo));
 		
 		receita.setValorTotalDizimo(valorTotalDizimo);
 		

@@ -63,5 +63,17 @@ public class Util implements Serializable{
 			
 	}
 	
+	public String converteBigDecimalString (BigDecimal valor){
+		
+		BigDecimal bd = BigDecimal.valueOf(valor.doubleValue());
+		
+		NumberFormat nf = NumberFormat.getCurrencyInstance();
+		
+		String valorTotalDizimoString = nf.format (bd);
+		
+		return valorTotalDizimoString;
+		
+	}
+	
 	
 }
