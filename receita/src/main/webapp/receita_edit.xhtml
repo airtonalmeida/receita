@@ -102,9 +102,13 @@
 			        <p:column>
   			           <h:outputLabel value="#{messages['oferta.label.valor']}: " for="valorOfertaString" styleClass="text-input" />
 						    
-			           <h:inputText id="valorOfertaString" value="#{oferta.valorOfertaString}"
-				          title="#{messages['oferta.alt.valor']}" />
-						                   
+			           <p:inputText id="valorOfertaString" value="#{oferta.valorOfertaString}"
+				          title="#{messages['oferta.alt.valor']}" >
+				          
+				          <p:ajax event="blur"
+										update=":form:valorTotalOfertaString,:form:valorTotalReceitaString"
+										listener="#{receitaEditMB.calcularValorTotalOferta}" />
+					  </p:inputText>                 
 					   <p:message for="valorOfertaString" />
 			  	   </p:column>	
 			  	   <p:column>
@@ -162,8 +166,12 @@
 			        <p:column>
   			           <h:outputLabel value="#{messages['recursoDiverso.label.valor']}: " for="valorRecursoDiversoString" styleClass="text-input" />
 						    
-			           <p:outputLabel id="valorRecursoDiversoString" value="#{recursoDiverso.valorRecursoDiversoString}" 
-				          title="#{messages['recursoDiverso.alt.valor']}" />
+			           <p:inputText id="valorRecursoDiversoString" value="#{recursoDiverso.valorRecursoDiversoString}" 
+				          title="#{messages['recursoDiverso.alt.valor']}" >
+				          <p:ajax event="blur"
+										update=":form:valorTotalRecursoDiversoString,:form:valorTotalReceitaString"
+										listener="#{receitaEditMB.calcularValorTotalRecursoDiverso}" />
+					  </p:inputText>                 
 						                   
 					   <p:message for="valorRecursoDiversoString" />
 			  	   </p:column>					  
@@ -181,9 +189,9 @@
 							</f:facet>
 				</p:toolbar>
 				
-				<h:outputLabel value="#{messages['receita.label.valorTotalRecursoDiverso']}: " for="valorTotalRecursoDiversoString" styleClass="text-input" />
+				<p:outputLabel value="#{messages['receita.label.valorTotalRecursoDiverso']}: " for="valorTotalRecursoDiversoString" styleClass="text-input" />
 					
-					<h:inputText id="valorTotalRecursoDiversoString" value="#{receitaEditMB.bean.valorTotalRecursoDiversoString}" disabled="true"
+					<p:outputLabel id="valorTotalRecursoDiversoString" value="#{receitaEditMB.bean.valorTotalRecursoDiversoString}" disabled="true"
 						title="#{messages['receita.alt.valorTotalRecursoDiverso']}" />
 					
 					<p:message for="valorTotalRecursoDiversoString" />

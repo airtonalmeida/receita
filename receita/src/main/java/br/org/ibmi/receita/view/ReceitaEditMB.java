@@ -46,12 +46,9 @@ public class ReceitaEditMB extends AbstractEditPageBean<Receita, Long> {
 	public void addDizimo() {
 		this.getBean().getDizimos().add(new Dizimo());
 	}
-	public void deleteDizimo() {
+	public void deleteDizimo() {		
 		
-		Receita receita = new Receita();
-		
-		receitaBC.calcularValorTotalDizimoSubtrair(this.getBean(), getDizimoList().getRowData().getValorDizimoString());
-		
+		receitaBC.calcularValorTotalDizimoSubtrair(this.getBean(), getDizimoList().getRowData().getValorDizimoString());		
 		
 	   this.getBean().getDizimos().remove(getDizimoList().getRowData());
 	}
@@ -66,7 +63,10 @@ public class ReceitaEditMB extends AbstractEditPageBean<Receita, Long> {
 	public void addOferta() {
 		this.getBean().getOfertas().add(new Oferta());
 	}
-	public void deleteOferta() {
+	public void deleteOferta() {		
+		
+		receitaBC.calcularValorTotalOfertaSubtrair(this.getBean(), getOfertaList().getRowData().getValorOfertaString());
+		
 	   this.getBean().getOfertas().remove(getOfertaList().getRowData());
 	}
 	public DataModel<Oferta> getOfertaList() {
@@ -81,6 +81,9 @@ public class ReceitaEditMB extends AbstractEditPageBean<Receita, Long> {
 		this.getBean().getRecursosDiversos().add(new RecursoDiverso());
 	}
 	public void deleteRecursoDiverso() {
+		
+		receitaBC.calcularValorTotalRecursoDiversoSubtrair(this.getBean(), getRecursoDiversoList().getRowData().getValorRecursoDiversoString());
+		
 	   this.getBean().getRecursosDiversos().remove(getRecursoDiversoList().getRowData());
 	}
 	public DataModel<RecursoDiverso> getRecursoDiversoList() {
@@ -136,14 +139,21 @@ public class ReceitaEditMB extends AbstractEditPageBean<Receita, Long> {
 		
 	}
 	
-	public void calcularValorTotalDizimo() {
+	public void calcularValorTotalDizimo() {		
 		
-		Receita receita = new Receita();
+		receitaBC.calcularValorTotalDizimo(this.getBean());				
 		
-		receita = receitaBC.calcularValorTotalDizimo(this.getBean());
+	}
+	
+	public void calcularValorTotalOferta() {
 		
-		this.getBean().setValorTotalDizimoString(receita.getValorTotalDizimoString());
+		receitaBC.calcularValorTotalOferta(this.getBean());			
 		
+	}
+	
+	public void calcularValorTotalRecursoDiverso() {
+		
+		receitaBC.calcularValorTotalRecursoDiverso(this.getBean());			
 		
 	}
 }
