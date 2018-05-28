@@ -10,7 +10,7 @@
 					<p:commandButton title="#{messages['button.new']}" icon="ui-icon-document" action="#{receitaListMB.getNextView}"
 						actionListener="#{receitaListMB.clear}" ajax="false" />
 
-					<p:commandButton title="#{messages['button.delete']}" icon="ui-icon-trash" onclick="confirmation.show()"
+					<p:commandButton title="#{messages['button.delete']}" icon="ui-icon-trash" onclick="PF('confirmation').show();"
 						type="button" immediate="true" ajax="false" />
 
 					<p:confirmDialog message="#{messages['label.confirm.delete']}" showEffect="bounce" hideEffect="explode"
@@ -32,7 +32,7 @@
 				<p:column sortBy="#{bean.valorTotalReceita}">
 					<f:facet name="header">#{messages['receita.label.valorTotalReceita']}</f:facet>
 					<h:commandLink action="#{receitaListMB.getNextView}" actionListener="#{receitaListMB.clear}">
-						<h:outputText value="#{bean.valorTotalReceita}" />
+						<h:outputText value="#{bean.valorTotalReceitaString}" />
 						<f:param name="id" value="#{bean.codigo}" />
 					</h:commandLink>
 				</p:column>
@@ -40,7 +40,7 @@
 				<p:column sortBy="#{bean.valorTotalDizimo}">
 					<f:facet name="header">#{messages['receita.label.valorTotalDizimo']}</f:facet>
 					<h:commandLink action="#{receitaListMB.getNextView}" actionListener="#{receitaListMB.clear}">
-						<h:outputText value="#{bean.valorTotalDizimo}" />
+						<h:outputText value="#{bean.valorTotalDizimoString}" />
 						<f:param name="id" value="#{bean.codigo}" />
 					</h:commandLink>
 				</p:column>
@@ -48,7 +48,7 @@
 				<p:column sortBy="#{bean.valorTotalOferta}">
 					<f:facet name="header">#{messages['receita.label.valorTotalOferta']}</f:facet>
 					<h:commandLink action="#{receitaListMB.getNextView}" actionListener="#{receitaListMB.clear}">
-						<h:outputText value="#{bean.valorTotalOferta}" />
+						<h:outputText value="#{bean.valorTotalOfertaString}" />
 						<f:param name="id" value="#{bean.codigo}" />
 					</h:commandLink>
 				</p:column>
@@ -56,7 +56,7 @@
 				<p:column sortBy="#{bean.valorTotalRecursoDiverso}">
 					<f:facet name="header">#{messages['receita.label.valorTotalRecursoDiverso']}</f:facet>
 					<h:commandLink action="#{receitaListMB.getNextView}" actionListener="#{receitaListMB.clear}">
-						<h:outputText value="#{bean.valorTotalRecursoDiverso}" />
+						<h:outputText value="#{bean.valorTotalRecursoDiversoString}" />
 						<f:param name="id" value="#{bean.codigo}" />
 					</h:commandLink>
 				</p:column>
@@ -64,7 +64,9 @@
 				<p:column sortBy="#{bean.data}">
 					<f:facet name="header">#{messages['receita.label.data']}</f:facet>
 					<h:commandLink action="#{receitaListMB.getNextView}" actionListener="#{receitaListMB.clear}">
-						<h:outputText value="#{bean.data}" />
+						<h:outputText value="#{bean.data}" >
+						<f:convertDateTime pattern="dd/MM/yyyy" timeZone="#{initParam.timezone}" locale="#{locales.currentLocale}" />
+						</h:outputText>
 						<f:param name="id" value="#{bean.codigo}" />
 					</h:commandLink>
 				</p:column>					

@@ -242,7 +242,7 @@
 						rendered="#{!receitaEditMB.updateMode}" ajax="false" />
 					<p:commandButton value="#{messages['button.save']}" action="#{receitaEditMB.update}"
 						rendered="#{receitaEditMB.updateMode}" ajax="false" />
-					<p:commandButton value="#{messages['button.delete']}" onclick="confirmation.show()"
+					<p:commandButton value="#{messages['button.delete']}" onclick="PF('confirmation').show();"
 						rendered="#{receitaEditMB.updateMode}" type="button" immediate="true" ajax="false" />
 					<p:confirmDialog message="#{messages['label.confirm.delete']}" showEffect="bounce" hideEffect="explode"
 						header="#{messages['label.dialog.delete']}" severity="alert" widgetVar="confirmation">
