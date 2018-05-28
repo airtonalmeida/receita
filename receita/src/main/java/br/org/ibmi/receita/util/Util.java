@@ -2,8 +2,10 @@ package br.org.ibmi.receita.util;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 import java.text.NumberFormat;
 import java.text.ParseException;
+import java.util.Locale;
 
 
 public class Util implements Serializable{
@@ -76,4 +78,5 @@ public class Util implements Serializable{
 	}
 	
 	
+		
 }

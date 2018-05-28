@@ -2,6 +2,7 @@
 package br.org.ibmi.receita.view;
 
 import java.math.BigDecimal;
+import java.math.MathContext;
 import java.math.RoundingMode;
 import java.text.DateFormatSymbols;
 import java.util.Calendar;
@@ -24,6 +25,7 @@ import br.org.ibmi.receita.domain.Oferta;
 import br.org.ibmi.receita.domain.Receita;
 import br.org.ibmi.receita.domain.RecursoDiverso;
 import br.org.ibmi.receita.domain.TipoOferta;
+import br.org.ibmi.receita.util.Util;
 
 // To remove unused imports press: Ctrl+Shift+o
 
@@ -35,6 +37,9 @@ public class ReceitaEditMB extends AbstractEditPageBean<Receita, Long> {
 
 	@Inject
 	private ReceitaBC receitaBC;
+	
+	@Inject
+	private Util util;
 	
 	private BigDecimal percentualDizimo;
 	
@@ -227,19 +232,20 @@ public class ReceitaEditMB extends AbstractEditPageBean<Receita, Long> {
 			
 			percentualDizimo = new BigDecimal(0);
 			
-			percentualDizimo = percentualDizimo.setScale(2, BigDecimal.ROUND_HALF_EVEN);
-			
+			//percentualDizimo = percentualDizimo.setScale(2, BigDecimal.ROUND_HALF_EVEN);
+						
 			BigDecimal cem = new BigDecimal(100);
 			
 			BigDecimal valor = new BigDecimal(0);
 			
-			valor = valor.setScale(2, BigDecimal.ROUND_HALF_EVEN);
+			//valor = valor.setScale(2, BigDecimal.ROUND_HALF_EVEN);
 			
 			valor = this.getBean().getValorTotalDizimo();			
 			
 			if(valor.compareTo(BigDecimal.ZERO)>0){
 				
-				percentualDizimo = (valor.divide(this.getBean().getValorTotalReceita(),2, RoundingMode.HALF_EVEN)).multiply(cem);
+				percentualDizimo = (valor.divide(this.getBean().getValorTotalReceita(),MathContext.DECIMAL32)).multiply(cem);
+				
 			}
 			
 		}
@@ -252,19 +258,19 @@ public class ReceitaEditMB extends AbstractEditPageBean<Receita, Long> {
 		
 			percentualOferta = new BigDecimal(0);
 			
-			percentualOferta = percentualOferta.setScale(2, BigDecimal.ROUND_HALF_EVEN);
+			//percentualOferta = percentualOferta.setScale(2, BigDecimal.ROUND_HALF_EVEN);
 			
 			BigDecimal cem = new BigDecimal(100);
 			
 			BigDecimal valor = new BigDecimal(0);
 			
-			valor = valor.setScale(2, BigDecimal.ROUND_HALF_EVEN);
+			//valor = valor.setScale(2, BigDecimal.ROUND_HALF_EVEN);
 			
 			valor = this.getBean().getValorTotalOferta();
 			
 			if(valor.compareTo(BigDecimal.ZERO)>0){
 				
-				percentualOferta = (valor.divide(this.getBean().getValorTotalReceita(),2, RoundingMode.HALF_EVEN)).multiply(cem);
+				percentualOferta = (valor.divide(this.getBean().getValorTotalReceita(),MathContext.DECIMAL32)).multiply(cem);
 			}
 			
 		}
@@ -277,19 +283,19 @@ public class ReceitaEditMB extends AbstractEditPageBean<Receita, Long> {
 			
 			percentualRecursoDiverso = new BigDecimal(0);
 			
-			percentualRecursoDiverso = percentualRecursoDiverso.setScale(2, BigDecimal.ROUND_HALF_EVEN);
+			//percentualRecursoDiverso = percentualRecursoDiverso.setScale(2, BigDecimal.ROUND_HALF_EVEN);
 			
 			BigDecimal cem = new BigDecimal(100);
 			
 			BigDecimal valor = new BigDecimal(0);
 			
-			valor = valor.setScale(2, BigDecimal.ROUND_HALF_EVEN);
+			//valor = valor.setScale(2, BigDecimal.ROUND_HALF_EVEN);
 		
 			valor = this.getBean().getValorTotalRecursoDiverso();
 		
 			if(valor.compareTo(BigDecimal.ZERO)>0){
 			
-				percentualRecursoDiverso = (valor.divide(this.getBean().getValorTotalReceita(),2, RoundingMode.HALF_EVEN)).multiply(cem);
+				percentualRecursoDiverso = (valor.divide(this.getBean().getValorTotalReceita(),MathContext.DECIMAL32)).multiply(cem);
 			}
 		
 		}
