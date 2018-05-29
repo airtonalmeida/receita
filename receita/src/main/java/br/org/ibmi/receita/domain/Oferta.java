@@ -24,8 +24,7 @@ public class Oferta implements Serializable{
 	@Id
 	@Column(name="cod_oferta")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long codigo;
-	
+	private Long codigo;	
 	
 	@Column (name="valor_oferta")
 	private BigDecimal valorOferta;
@@ -36,6 +35,9 @@ public class Oferta implements Serializable{
 	@ManyToOne(optional = true)
 	@JoinColumn(name = "cod_tipo_oferta", nullable=false)
 	private TipoOferta tipoOferta;
+	
+	@Column
+	private String descricao;	
 
 	public Long getCodigo() {
 		return codigo;
@@ -69,12 +71,22 @@ public class Oferta implements Serializable{
 	public void setValorOfertaString(String valorOfertaString) {
 		this.valorOfertaString = valorOfertaString;
 	}
+	
+	public String getDescricao() {
+		return descricao;
+	}
+
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
+	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((codigo == null) ? 0 : codigo.hashCode());
+		result = prime * result
+				+ ((descricao == null) ? 0 : descricao.hashCode());
 		result = prime * result
 				+ ((tipoOferta == null) ? 0 : tipoOferta.hashCode());
 		result = prime * result
@@ -100,6 +112,11 @@ public class Oferta implements Serializable{
 				return false;
 		} else if (!codigo.equals(other.codigo))
 			return false;
+		if (descricao == null) {
+			if (other.descricao != null)
+				return false;
+		} else if (!descricao.equals(other.descricao))
+			return false;
 		if (tipoOferta == null) {
 			if (other.tipoOferta != null)
 				return false;
@@ -118,8 +135,6 @@ public class Oferta implements Serializable{
 		return true;
 	}
 
-	
-	
 	
 	
 	

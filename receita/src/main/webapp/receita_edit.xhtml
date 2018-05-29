@@ -154,6 +154,18 @@
 					</p:selectOneMenu>
 					<p:message for="tipoOferta" />				  
 				</p:column>
+				
+				
+			  		<p:column>
+  			           <p:outputLabel value="#{messages['recursoDiverso.label.descricao']}: " for="descricao" styleClass="text-input" />
+						    
+			           <p:inputText id="descricaoOferta" value="#{oferta.descricao}"
+				          title="#{messages['recursoDiverso.alt.descricao']}" />
+						                   
+					   <p:message for="descricao" />
+			  	   </p:column>			  
+				
+				
 				   <p:column>
 					   <f:facet name="header">#{messages['label.action']}</f:facet>
 					   <p:commandButton value="#{messages['button.delete']}" action="#{receitaEditMB.deleteOferta}" ajax="false"/>

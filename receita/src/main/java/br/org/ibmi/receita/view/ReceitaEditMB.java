@@ -21,6 +21,7 @@ import br.gov.frameworkdemoiselle.template.AbstractEditPageBean;
 import br.gov.frameworkdemoiselle.transaction.Transactional;
 import br.org.ibmi.receita.business.ReceitaBC;
 import br.org.ibmi.receita.business.TipoOfertaBC;
+import br.org.ibmi.receita.constant.Constantes;
 import br.org.ibmi.receita.domain.Dizimo;
 import br.org.ibmi.receita.domain.Oferta;
 import br.org.ibmi.receita.domain.Receita;
@@ -53,6 +54,8 @@ public class ReceitaEditMB extends AbstractEditPageBean<Receita, Long> {
 	private String percentualOfertaString;
 	
 	private String percentualRecursoDiversoString;	
+	
+	private boolean rendereDescricaoOferta;
 	
 	@Inject
 	private TipoOfertaBC tipoOfertaBC;
@@ -332,6 +335,24 @@ public class ReceitaEditMB extends AbstractEditPageBean<Receita, Long> {
 		}
 	
 	}
+	public boolean isRendereDescricaoOferta() {
+		setRendereDescricaoOferta(this.renderizarDescricaoOferta(getOfertaList().getRowData().getTipoOferta().getDescricao()));
+				
+		return rendereDescricaoOferta;
+	}
+	
+	public void setRendereDescricaoOferta(boolean rendereDescricaoOferta) {
+		this.rendereDescricaoOferta = rendereDescricaoOferta;
+	}
+	
+	public boolean renderizarDescricaoOferta(String descricao){
+		if (descricao.equals(Constantes.OUTROS)) {
+			return true;
+		}
+		return false;
+	}
+	
+	
 	
 	
 }
