@@ -77,6 +77,16 @@ public class Util implements Serializable{
 		
 	}
 	
+	public String converteBigDecimalStringSemCifrao (BigDecimal valor){		
+			
+		NumberFormat df = NumberFormat.getCurrencyInstance();
+		
+		String dx = df.format(valor.doubleValue());
+							
+		return dx.substring(3);
+		
+	}
+	
 	
 		
 }
