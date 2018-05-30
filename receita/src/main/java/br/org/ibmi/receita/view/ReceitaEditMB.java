@@ -55,7 +55,7 @@ public class ReceitaEditMB extends AbstractEditPageBean<Receita, Long> {
 	
 	private String percentualRecursoDiversoString;	
 	
-	private boolean rendereDescricaoOferta;
+	private boolean rendereDescricaoOferta = true;
 	
 	@Inject
 	private TipoOfertaBC tipoOfertaBC;
@@ -335,8 +335,7 @@ public class ReceitaEditMB extends AbstractEditPageBean<Receita, Long> {
 		}
 	
 	}
-	public boolean isRendereDescricaoOferta() {
-		setRendereDescricaoOferta(this.renderizarDescricaoOferta(getOfertaList().getRowData().getTipoOferta().getDescricao()));
+	public boolean isRendereDescricaoOferta() {		
 				
 		return rendereDescricaoOferta;
 	}
@@ -345,13 +344,17 @@ public class ReceitaEditMB extends AbstractEditPageBean<Receita, Long> {
 		this.rendereDescricaoOferta = rendereDescricaoOferta;
 	}
 	
-	public boolean renderizarDescricaoOferta(String descricao){
+	public boolean renderizarDescricaoOferta(){
+		
+		String descricao = getOfertaList().getRowData().getTipoOferta().getDescricao();
+		
 		if (descricao.equals(Constantes.OUTROS)) {
-			return true;
+			
+			setRendereDescricaoOferta(true);
+			return rendereDescricaoOferta;
 		}
-		return false;
+		return rendereDescricaoOferta;
 	}
-	
 	
 	
 	
