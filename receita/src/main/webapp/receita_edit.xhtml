@@ -150,14 +150,14 @@
 						<f:selectItems value="#{receitaEditMB.tipoOfertaList}"
 							var="varTipoOferta" itemLabel="#{varTipoOferta.descricao}"
 							itemValue="#{varTipoOferta}" />
-						<p:ajax event="change"  update="fieldDescricaoOferta"  listener="#{receitaEditMB.renderizarDescricaoOferta()}" />
+						<p:ajax event="change"  update="fieldDescricaoOferta"  listener="#{receitaEditMB.renderizarDescricaoOferta()}"  />
 					</p:selectOneMenu>
 					<p:message for="tipoOferta" />				  
 				</p:column>
 				
-				
-			  		<p:column>
-			  		<h:panelGrid id="fieldDescricaoOferta" rendered="#{receitaEditMB.rendereDescricaoOferta}" columns="1">
+				<p:column>
+				<p:outputPanel id="fieldDescricaoOferta">
+			  	<h:panelGrid    rendered="#{receitaEditMB.rendereDescricaoOferta}" columns="1">
 			  		<p:column>
   			           <p:outputLabel value="#{messages['recursoDiverso.label.descricao']}: " for="descricaoOferta" styleClass="text-input" />
 						    
@@ -167,7 +167,8 @@
 					   <p:message for="descricaoOferta" />
 					   </p:column>
 				   </h:panelGrid>
-			  	   </p:column>			  
+				   </p:outputPanel>
+			  	  </p:column>	  
 				
 				
 				   <p:column>

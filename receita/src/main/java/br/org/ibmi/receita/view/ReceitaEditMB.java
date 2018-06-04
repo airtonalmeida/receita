@@ -3,7 +3,6 @@ package br.org.ibmi.receita.view;
 
 import java.math.BigDecimal;
 import java.math.MathContext;
-import java.math.RoundingMode;
 import java.text.DateFormatSymbols;
 import java.util.Calendar;
 import java.util.Date;
@@ -55,7 +54,7 @@ public class ReceitaEditMB extends AbstractEditPageBean<Receita, Long> {
 	
 	private String percentualRecursoDiversoString;	
 	
-	private boolean rendereDescricaoOferta = true;
+	private boolean rendereDescricaoOferta;
 	
 	@Inject
 	private TipoOfertaBC tipoOfertaBC;
@@ -268,73 +267,72 @@ public class ReceitaEditMB extends AbstractEditPageBean<Receita, Long> {
 	
 	public void calcularPercentualDizimo(){
 		
+		BigDecimal valor = new BigDecimal(0);
+		
 		if(this.getBean().getValorTotalDizimo()!=null){
+			
+			valor = this.getBean().getValorTotalDizimo();
+		}
 			
 			percentualDizimo = new BigDecimal(0);			
 						
-			BigDecimal cem = new BigDecimal(100);
-			
-			BigDecimal valor = new BigDecimal(0);			
-			
-			valor = this.getBean().getValorTotalDizimo();			
+			BigDecimal cem = new BigDecimal(100);						
 			
 			if(valor.compareTo(BigDecimal.ZERO)>0){
 				
-				percentualDizimo = (valor.divide(this.getBean().getValorTotalReceita(),MathContext.DECIMAL32)).multiply(cem);
-				
-				this.percentualDizimoString = util.converteBigDecimalStringSemCifrao(percentualDizimo);
+				percentualDizimo = (valor.divide(this.getBean().getValorTotalReceita(),MathContext.DECIMAL32)).multiply(cem);						
 				
 			}
 			
-		}
+			this.percentualDizimoString = util.converteBigDecimalStringSemCifrao(percentualDizimo);
 		
 	}
 	
 	public void calcularPercentualOferta(){
 		
+		BigDecimal valor = new BigDecimal(0);
+		
 		if(this.getBean().getValorTotalOferta()!=null){
+			
+			valor = this.getBean().getValorTotalOferta();
+		}
 		
 			percentualOferta = new BigDecimal(0);			
 			
-			BigDecimal cem = new BigDecimal(100);
-			
-			BigDecimal valor = new BigDecimal(0);			
-			
-			valor = this.getBean().getValorTotalOferta();
+			BigDecimal cem = new BigDecimal(100);			
 			
 			if(valor.compareTo(BigDecimal.ZERO)>0){
 				
 				percentualOferta = (valor.divide(this.getBean().getValorTotalReceita(),MathContext.DECIMAL32)).multiply(cem);
-				
-				this.percentualOfertaString = util.converteBigDecimalStringSemCifrao(percentualOferta);
+							
 			}
 			
-		}
+			this.percentualOfertaString = util.converteBigDecimalStringSemCifrao(percentualOferta);
 		
 	}
 
 	public void calcularPercentualRecursoDiverso(){	
-	
+		
+		BigDecimal valor = new BigDecimal(0);
+		
 		if(this.getBean().getValorTotalRecursoDiverso()!=null){
 			
-			percentualRecursoDiverso = new BigDecimal(0);			
-			
-			BigDecimal cem = new BigDecimal(100);
-			
-			BigDecimal valor = new BigDecimal(0);			
-					
 			valor = this.getBean().getValorTotalRecursoDiverso();
-		
-			if(valor.compareTo(BigDecimal.ZERO)>0){
+		}	
 			
-				percentualRecursoDiverso = (valor.divide(this.getBean().getValorTotalReceita(),MathContext.DECIMAL32)).multiply(cem);
+		percentualRecursoDiverso = new BigDecimal(0);			
+			
+		BigDecimal cem = new BigDecimal(100);
+			
+		if(valor.compareTo(BigDecimal.ZERO)>0){
+			
+			percentualRecursoDiverso = (valor.divide(this.getBean().getValorTotalReceita(),MathContext.DECIMAL32)).multiply(cem);				
 				
-				this.percentualRecursoDiversoString = util.converteBigDecimalStringSemCifrao(percentualRecursoDiverso);
-			}
-		
-		}
-	
+		}			
+			this.percentualRecursoDiversoString = util.converteBigDecimalStringSemCifrao(percentualRecursoDiverso);
+			
 	}
+	
 	public boolean isRendereDescricaoOferta() {		
 				
 		return rendereDescricaoOferta;
@@ -345,6 +343,8 @@ public class ReceitaEditMB extends AbstractEditPageBean<Receita, Long> {
 	}
 	
 	public boolean renderizarDescricaoOferta(){
+		
+		rendereDescricaoOferta = false;
 		
 		String descricao = getOfertaList().getRowData().getTipoOferta().getDescricao();
 		

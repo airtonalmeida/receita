@@ -91,6 +91,11 @@ public class ReceitaBC extends DelegateCrud<Receita, Long, ReceitaDAO> {
 			valorTotalRecursoDiverso = receita.getValorTotalRecursoDiverso();			
 		}
 		
+		if(valor==""){
+			
+			valor="0";
+		}
+		
 		valorTotalDizimo = valorTotalDizimo.subtract(util.converteStringBigDecimal(valor));
 		
 		receita.setValorTotalDizimo(valorTotalDizimo);
@@ -180,6 +185,11 @@ public class ReceitaBC extends DelegateCrud<Receita, Long, ReceitaDAO> {
 		}if(receita.getValorTotalRecursoDiverso()!=null){
 			
 			valorTotalRecursoDiverso = receita.getValorTotalRecursoDiverso();			
+		}
+		
+		if(valor==""){
+			
+			valor="0";
 		}
 		
 		valorTotalOferta = valorTotalOferta.subtract(util.converteStringBigDecimal(valor));
@@ -272,6 +282,11 @@ public class ReceitaBC extends DelegateCrud<Receita, Long, ReceitaDAO> {
 		}if(receita.getValorTotalRecursoDiverso()!=null){
 			
 			valorTotalRecursoDiverso = receita.getValorTotalRecursoDiverso();			
+		}
+		
+		if(valor==""){
+			
+			valor="0";
 		}
 		
 		valorTotalRecursoDiverso = valorTotalRecursoDiverso.subtract(util.converteStringBigDecimal(valor));
